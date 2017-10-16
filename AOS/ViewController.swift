@@ -20,6 +20,10 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
-
+    @IBOutlet weak var arbeitsscheinButtonAction: UIBarButtonItem!
+    
+    @IBOutlet weak var projektButtonAction: UIBarButtonItem!
+    @IBOutlet weak var ticketsButtonAction: UIBarButtonItem!
+    @IBOutlet weak var einstellungenButtonAction: UIBarButtonItem!
 }
 
