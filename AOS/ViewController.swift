@@ -20,10 +20,19 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
-    @IBOutlet weak var arbeitsscheinButtonAction: UIBarButtonItem!
+    @IBAction func einstellungenButtonAction(_ sender: Any) {
+        self.performSegue(withIdentifier: "segueEinstellungen", sender: self)
+    }
     
-    @IBOutlet weak var projektButtonAction: UIBarButtonItem!
-    @IBOutlet weak var ticketsButtonAction: UIBarButtonItem!
-    @IBOutlet weak var einstellungenButtonAction: UIBarButtonItem!
+    @IBAction func ticketsButtonAction(_ sender: Any) {
+        self.performSegue(withIdentifier: "segueTickets", sender: self)
+    }
+    
+    @IBAction func projekteButtonAction(_ sender: Any) {
+        self.performSegue(withIdentifier: "segueProjekte", sender: self)
+    }
+    @IBAction func arbeitsscheineButtonController(_ sender: Any) {
+        self.performSegue(withIdentifier: "segueArbeitsscheine", sender: self)
+    }
 }
 

@@ -21,11 +21,31 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" id="VD0-hc-35n">
-                        <barButtonItem key="leftBarButtonItem" title="Arbeitsscheine" id="H8Q-DT-nP0"/>
+                        <barButtonItem key="leftBarButtonItem" title="Arbeitsscheine" id="H8Q-DT-nP0">
+                            <connections>
+                                <action selector="arbeitsscheineButtonController:" destination="BYZ-38-t0r" id="LCc-2L-V15"/>
+                                <segue destination="EZY-wZ-gm6" kind="show" identifier="segueArbeitsscheine" id="aaw-pL-9ae"/>
+                            </connections>
+                        </barButtonItem>
                         <rightBarButtonItems>
-                            <barButtonItem title="Einstellungen" id="yt2-7L-EGT"/>
-                            <barButtonItem title="Tickets" id="XXc-fc-rYV"/>
-                            <barButtonItem title="Projekte" id="EDp-lp-CFa"/>
+                            <barButtonItem title="Einstellungen" id="yt2-7L-EGT">
+                                <connections>
+                                    <action selector="einstellungenButtonAction:" destination="BYZ-38-t0r" id="qxe-bF-Igm"/>
+                                    <segue destination="wwd-t8-363" kind="show" identifier="segueEinstellungen" id="Tbo-Yg-OV5"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem title="Tickets" id="XXc-fc-rYV">
+                                <connections>
+                                    <action selector="ticketsButtonAction:" destination="BYZ-38-t0r" id="SEU-qz-xTt"/>
+                                    <segue destination="iwf-cb-fA5" kind="show" identifier="segueTickets" id="snO-Vx-NUD"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem title="Projekte" id="EDp-lp-CFa">
+                                <connections>
+                                    <action selector="projekteButtonAction:" destination="BYZ-38-t0r" id="oia-JW-2p4"/>
+                                    <segue destination="c0M-Qg-6xL" kind="show" identifier="segueProjekte" id="nMn-6J-cUK"/>
+                                </connections>
+                            </barButtonItem>
                         </rightBarButtonItems>
                     </navigationItem>
                     <connections>
@@ -48,7 +68,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Arbeitsscheine" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZeI-os-sao">
-                                <rect key="frame" x="130" y="42" width="114" height="33"/>
+                                <rect key="frame" x="130" y="64" width="114" height="33"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
@@ -61,7 +81,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="A4D-Fd-bcg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1168.8" y="58.920539730134934"/>
+            <point key="canvasLocation" x="-31" y="-572"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="4xh-DP-CBk">
@@ -72,7 +92,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Projekte" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WIW-RN-9sP">
-                                <rect key="frame" x="166" y="72" width="63" height="43"/>
+                                <rect key="frame" x="156" y="64" width="63" height="43"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
@@ -85,7 +105,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FID-Vs-Xpx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1168.8" y="707.49625187406298"/>
+            <point key="canvasLocation" x="766" y="-573"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="DUH-Gh-vnQ">
@@ -96,7 +116,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Tickets" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N3X-KI-cOl">
-                                <rect key="frame" x="166" y="45" width="56" height="21"/>
+                                <rect key="frame" x="159" y="64" width="56" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
@@ -109,7 +129,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="d8S-5Z-Txt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1180" y="1345.2773613193403"/>
+            <point key="canvasLocation" x="476" y="903"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="wap-Ta-TRh">
@@ -120,7 +140,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Einstellungen" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cm4-6J-HLp">
-                                <rect key="frame" x="136" y="42" width="103" height="22"/>
+                                <rect key="frame" x="136" y="64" width="103" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
@@ -133,7 +153,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Mkq-i5-dGC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1168.8" y="1996.5517241379312"/>
+            <point key="canvasLocation" x="1473" y="134"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="N8j-P0-WtU">
