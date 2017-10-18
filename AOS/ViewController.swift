@@ -14,25 +14,36 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
 
-    @IBAction func einstellungenButtonAction(_ sender: Any) {
+    @IBAction func einstellungenButtonAction(sender: UIBarButtonItem) {
         self.performSegue(withIdentifier: "segueEinstellungen", sender: self)
     }
     
-    @IBAction func ticketsButtonAction(_ sender: Any) {
+    @IBAction func ticketsButtonAction(sender: UIBarButtonItem) {
         self.performSegue(withIdentifier: "segueTickets", sender: self)
     }
     
-    @IBAction func projekteButtonAction(_ sender: Any) {
+    @IBAction func projekteButtonAction(sender: UIBarButtonItem) {
         self.performSegue(withIdentifier: "segueProjekte", sender: self)
     }
-    @IBAction func arbeitsscheineButtonController(_ sender: Any) {
+    @IBAction func arbeitsscheineButtonController(sender: UIBarButtonItem) {
         self.performSegue(withIdentifier: "segueArbeitsscheine", sender: self)
     }
+    
+    /*
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // set title for Einstellungen screen
+        
+        if segue.identifier == "segueEinstellungen" {
+            
+            
+        }
+    }*/
+    
 }
 
