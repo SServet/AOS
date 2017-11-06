@@ -4,8 +4,7 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
-        <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13174"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -18,51 +17,60 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sst-Vh-eEn">
+                                <rect key="frame" x="58" y="103" width="258" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.77584601683937826" green="0.76069964173155002" blue="0.75354153929812806" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" title="Arbeitsscheine"/>
+                                <connections>
+                                    <segue destination="EZY-wZ-gm6" kind="show" id="3w0-rJ-T8x"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kFk-tW-muD">
+                                <rect key="frame" x="58" y="163" width="258" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.77584601679999998" green="0.76069964170000004" blue="0.75354153930000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" title="Projekte"/>
+                                <connections>
+                                    <segue destination="c0M-Qg-6xL" kind="show" id="lmz-o9-qle"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fdT-NF-OkA">
+                                <rect key="frame" x="58" y="220" width="258" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.77584601679999998" green="0.76069964170000004" blue="0.75354153930000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" title="Tickets"/>
+                                <connections>
+                                    <segue destination="iwf-cb-fA5" kind="show" id="uCR-Ym-EpY"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L34-vd-jMZ">
+                                <rect key="frame" x="58" y="280" width="258" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.77584601679999998" green="0.76069964170000004" blue="0.75354153930000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" title="Einstellungen"/>
+                                <connections>
+                                    <segue destination="wwd-t8-363" kind="show" id="IkC-L2-Ysc"/>
+                                </connections>
+                            </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="rz_logo.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="pEN-QX-Q9D">
-                                <rect key="frame" x="16" y="79" width="343" height="63"/>
+                                <rect key="frame" x="16" y="364" width="300" height="49"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
-                    <navigationItem key="navigationItem" id="VD0-hc-35n">
-                        <barButtonItem key="leftBarButtonItem" title="Arbeitsscheine" id="H8Q-DT-nP0">
-                            <connections>
-                                <action selector="arbeitsscheineButtonController:" destination="BYZ-38-t0r" id="LCc-2L-V15"/>
-                                <segue destination="EZY-wZ-gm6" kind="show" id="GDy-DW-jNZ"/>
-                            </connections>
-                        </barButtonItem>
-                        <rightBarButtonItems>
-                            <barButtonItem title="Einstellungen" id="yt2-7L-EGT">
-                                <connections>
-                                    <action selector="einstellungenButtonAction:" destination="BYZ-38-t0r" id="OLj-GS-hKo"/>
-                                    <segue destination="wwd-t8-363" kind="show" identifier="segueEinstellungen" id="k7f-td-3uJ"/>
-                                </connections>
-                            </barButtonItem>
-                            <barButtonItem title="Tickets" id="XXc-fc-rYV">
-                                <connections>
-                                    <action selector="ticketsButtonAction:" destination="BYZ-38-t0r" id="SEU-qz-xTt"/>
-                                    <segue destination="iwf-cb-fA5" kind="show" identifier="segueTickets" id="HNB-CC-GHp"/>
-                                </connections>
-                            </barButtonItem>
-                            <barButtonItem title="Projekte" id="EDp-lp-CFa">
-                                <connections>
-                                    <action selector="projekteButtonAction:" destination="BYZ-38-t0r" id="oia-JW-2p4"/>
-                                    <segue destination="c0M-Qg-6xL" kind="show" identifier="segueProjekte" id="o6s-7b-Bb3"/>
-                                </connections>
-                            </barButtonItem>
-                        </rightBarButtonItems>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" id="VD0-hc-35n"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="476" y="133.5832083958021"/>
         </scene>
-        <!--View Controller-->
+        <!--Arbeitsscheine-->
         <scene sceneID="Row-u0-LVS">
             <objects>
-                <viewController id="EZY-wZ-gm6" sceneMemberID="viewController">
+                <viewController title="Arbeitsscheine" id="EZY-wZ-gm6" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="xN5-pc-QNl">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -83,10 +91,10 @@
             </objects>
             <point key="canvasLocation" x="-31" y="-572"/>
         </scene>
-        <!--View Controller-->
+        <!--Projekte-->
         <scene sceneID="4xh-DP-CBk">
             <objects>
-                <viewController id="c0M-Qg-6xL" sceneMemberID="viewController">
+                <viewController title="Projekte" id="c0M-Qg-6xL" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="WGg-ZQ-EeZ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -107,10 +115,10 @@
             </objects>
             <point key="canvasLocation" x="766" y="-573"/>
         </scene>
-        <!--TicketsViewController-->
+        <!--Tickets-->
         <scene sceneID="DUH-Gh-vnQ">
             <objects>
-                <viewController title="TicketsViewController" id="iwf-cb-fA5" sceneMemberID="viewController">
+                <viewController title="Tickets" id="iwf-cb-fA5" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ocG-Y3-Roy">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -131,10 +139,10 @@
             </objects>
             <point key="canvasLocation" x="476" y="903"/>
         </scene>
-        <!--EinstellungenViewController-->
+        <!--Einstellungen-->
         <scene sceneID="wap-Ta-TRh">
             <objects>
-                <viewController title="EinstellungenViewController" id="wwd-t8-363" sceneMemberID="viewController">
+                <viewController title="Einstellungen" id="wwd-t8-363" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="YAZ-Px-Ru3">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

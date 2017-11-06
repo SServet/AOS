@@ -13,6 +13,7 @@
 		F92C55811F94C06E00476CFB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F92C55801F94C06E00476CFB /* Assets.xcassets */; };
 		F92C55841F94C06E00476CFB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F92C55821F94C06E00476CFB /* LaunchScreen.storyboard */; };
 		F949A1241F953DF300641596 /* rz_logo.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F949A1231F953DF300641596 /* rz_logo.jpg */; };
+		F9807B3B1F97DCEC001BD351 /* rz_logo.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F9807B3A1F97DCEB001BD351 /* rz_logo.jpg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		F92C55831F94C06E00476CFB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F92C55851F94C06E00476CFB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F949A1231F953DF300641596 /* rz_logo.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = rz_logo.jpg; path = ../../SSIT/rz_logo.jpg; sourceTree = "<group>"; };
+		F9807B3A1F97DCEB001BD351 /* rz_logo.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = rz_logo.jpg; path = ../../../SSIT/rz_logo.jpg; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +62,7 @@
 				F92C557B1F94C06E00476CFB /* ViewController.swift */,
 				F92C557D1F94C06E00476CFB /* Main.storyboard */,
 				F949A1231F953DF300641596 /* rz_logo.jpg */,
+				F9807B3A1F97DCEB001BD351 /* rz_logo.jpg */,
 				F92C55801F94C06E00476CFB /* Assets.xcassets */,
 				F92C55821F94C06E00476CFB /* LaunchScreen.storyboard */,
 				F92C55851F94C06E00476CFB /* Info.plist */,
@@ -126,6 +129,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F9807B3B1F97DCEC001BD351 /* rz_logo.jpg in Resources */,
 				F92C55841F94C06E00476CFB /* LaunchScreen.storyboard in Resources */,
 				F92C55811F94C06E00476CFB /* Assets.xcassets in Resources */,
 				F949A1241F953DF300641596 /* rz_logo.jpg in Resources */,

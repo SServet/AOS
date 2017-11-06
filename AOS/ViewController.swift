@@ -19,20 +19,19 @@ class ViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
-    @IBAction func einstellungenButtonAction(sender: UIBarButtonItem) {
-        self.performSegue(withIdentifier: "segueEinstellungen", sender: self)
+    @IBAction func segueEinstellungenButton(sender: UIButton) {
+        self.performSegue(withIdentifier: "segueTEinstellungenButton", sender: self)
     }
     
-    @IBAction func ticketsButtonAction(sender: UIBarButtonItem) {
-        self.performSegue(withIdentifier: "segueTickets", sender: self)
+    @IBAction func segueTicketsButton(sender: UIButton) {
+        self.performSegue(withIdentifier: "segueTicketsButton", sender: self)
     }
-    
-    @IBAction func projekteButtonAction(sender: UIBarButtonItem) {
-        self.performSegue(withIdentifier: "segueProjekte", sender: self)
+    @IBAction func segueProjekteButton(sender: UIButton) {
+        self.performSegue(withIdentifier: "segueProjekteButton", sender: self)
+        
     }
-    @IBAction func arbeitsscheineButtonController(sender: UIBarButtonItem) {
-        self.performSegue(withIdentifier: "segueArbeitsscheine", sender: self)
+    @IBAction func segueArbeitsscheineButton(sender: UIButton) {
+        self.performSegue(withIdentifier: "segueArbeitsscheineButton", sender: self)
     }
     
     /*
