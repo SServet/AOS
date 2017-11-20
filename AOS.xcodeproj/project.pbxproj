@@ -24,8 +24,8 @@
 		F92C55801F94C06E00476CFB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F92C55831F94C06E00476CFB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F92C55851F94C06E00476CFB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		F949A1231F953DF300641596 /* rz_logo.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = rz_logo.jpg; path = ../../SSIT/rz_logo.jpg; sourceTree = "<group>"; };
-		F9807B3A1F97DCEB001BD351 /* rz_logo.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = rz_logo.jpg; path = ../../../SSIT/rz_logo.jpg; sourceTree = "<group>"; };
+		F949A1231F953DF300641596 /* rz_logo.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = rz_logo.jpg; sourceTree = "<group>"; };
+		F9807B3A1F97DCEB001BD351 /* rz_logo.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = rz_logo.jpg; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
