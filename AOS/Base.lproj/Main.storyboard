@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="dEk-Lo-cXA">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="dEk-Lo-cXA">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13174"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -402,14 +402,14 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="21"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="m.muster@ssit.at" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2kT-z5-9EF">
                                 <rect key="frame" x="164" y="252" width="194" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="21"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" keyboardType="emailAddress" enablesReturnKeyAutomatically="YES" textContentType="email"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7wU-8C-Xmy">
                                 <rect key="frame" x="16" y="544" width="343" height="54"/>
@@ -420,7 +420,7 @@
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
-                                    <action selector="segueLoginButton:" destination="iCY-VM-RiX" eventType="touchUpInside" id="PxW-kA-H7X"/>
+                                    <action selector="segueLoginButton:" destination="iCY-VM-RiX" eventType="touchUpInside" id="CO5-Dr-yA9"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -429,8 +429,9 @@
                     </view>
                     <navigationItem key="navigationItem" id="w9p-dj-g3p"/>
                     <connections>
-                        <outlet property="Login_Mail_Input" destination="2kT-z5-9EF" id="zap-Y6-BVB"/>
-                        <outlet property="Login_PW_Input" destination="7sr-ZH-o9B" id="aZh-ZW-Ri4"/>
+                        <outlet property="Login_Mail_Input" destination="2kT-z5-9EF" id="rKj-pF-nCB"/>
+                        <outlet property="Login_PW_Input" destination="7sr-ZH-o9B" id="4LW-go-hL3"/>
+                        <segue destination="BYZ-38-t0r" kind="show" identifier="segueLoginClick" id="F19-qG-hiu"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7EK-Jx-zNS" sceneMemberID="firstResponder"/>

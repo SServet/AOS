@@ -8,10 +8,27 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UITextFieldDelegate {
 
     @IBOutlet weak var Login_Mail_Input: UITextField!
     @IBOutlet weak var Login_PW_Input: UITextField!
+    
+    
+    /*
+     * Called when 'return' key pressed. return NO to ignore.
+     */
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
+    /*
+     * Called when the user click on the view (outside the UITextField).
+     */
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,10 +42,17 @@ class ViewController: UIViewController {
     }
     @IBAction func segueLoginButton(_ sender: Any) {
         if(Login_PW_Input.text != "" && Login_Mail_Input.text != ""){
-            self.performSegue(withIdentifier: "segueLoginButton", sender: self)
+            self.performSegue(withIdentifier: "segueLoginClick", sender: self)
         }
     }
-    
+    /*
+    @IBAction func segueLoginButton(_ sender: Any) {
+        if(Login_PW_Input.text != "" && Login_Mail_Input.text != ""){
+            self.performSegue(withIdentifier: "segueLoginClick", sender: self)
+        }
+        self.performSegue(withIdentifier: "segueLoginClick", sender: self)
+    }
+    */
     @IBAction func segueEinstellungenButton(sender: UIButton) {
         self.performSegue(withIdentifier: "segueTEinstellungenButton", sender: self)
     }
