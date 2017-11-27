@@ -13,6 +13,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var Login_Mail_Input: UITextField!
     @IBOutlet weak var Login_PW_Input: UITextField!
     @IBOutlet weak var roundedCornerButton: UIButton!
+    @IBOutlet weak var roundedCornerButton2: UIButton!
     
     /*
      * Called when 'return' key pressed. return NO to ignore.
@@ -36,6 +37,10 @@ class ViewController: UIViewController, UITextFieldDelegate {
         if roundedCornerButton != nil{
             roundedCornerButton.layer.cornerRadius = 10
         }
+        if roundedCornerButton2 != nil{
+            roundedCornerButton2.layer.cornerRadius = 10
+        }
+        navigationItem.hidesBackButton = true
     }
     
     /*

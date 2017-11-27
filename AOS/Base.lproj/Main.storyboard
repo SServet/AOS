@@ -103,7 +103,9 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
-                    <navigationItem key="navigationItem" id="VD0-hc-35n"/>
+                    <navigationItem key="navigationItem" id="VD0-hc-35n">
+                        <barButtonItem key="backBarButtonItem" title=" " id="ii6-fJ-b9z"/>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
