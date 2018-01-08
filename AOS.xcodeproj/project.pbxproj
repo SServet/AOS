@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		72659CF5200372280054F96D /* SearchPushRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72659CF4200372280054F96D /* SearchPushRow.swift */; };
+		72AEFE0F1FDE95490085FDCA /* Eureka.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 72AEFE0E1FDE95490085FDCA /* Eureka.framework */; };
+		72AEFE101FDE95490085FDCA /* Eureka.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 72AEFE0E1FDE95490085FDCA /* Eureka.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		72AEFE131FDE95DD0085FDCA /* addArbeitsscheinVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72AEFE121FDE95DD0085FDCA /* addArbeitsscheinVC.swift */; };
 		F92C557A1F94C06E00476CFB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F92C55791F94C06E00476CFB /* AppDelegate.swift */; };
 		F92C557C1F94C06E00476CFB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F92C557B1F94C06E00476CFB /* ViewController.swift */; };
 		F92C557F1F94C06E00476CFB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F92C557D1F94C06E00476CFB /* Main.storyboard */; };
@@ -16,7 +20,24 @@
 		F9807B3B1F97DCEC001BD351 /* rz_logo.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F9807B3A1F97DCEB001BD351 /* rz_logo.jpg */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		72AEFE111FDE95490085FDCA /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				72AEFE101FDE95490085FDCA /* Eureka.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		72659CF4200372280054F96D /* SearchPushRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchPushRow.swift; sourceTree = "<group>"; };
+		72AEFE0E1FDE95490085FDCA /* Eureka.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Eureka.framework; path = Carthage/Build/iOS/Eureka.framework; sourceTree = "<group>"; };
+		72AEFE121FDE95DD0085FDCA /* addArbeitsscheinVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = addArbeitsscheinVC.swift; sourceTree = "<group>"; };
 		F92C55761F94C06E00476CFB /* AOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F92C55791F94C06E00476CFB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F92C557B1F94C06E00476CFB /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -33,6 +54,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				72AEFE0F1FDE95490085FDCA /* Eureka.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -42,6 +64,7 @@
 		F92C556D1F94C06E00476CFB = {
 			isa = PBXGroup;
 			children = (
+				72AEFE0E1FDE95490085FDCA /* Eureka.framework */,
 				F92C55781F94C06E00476CFB /* AOS */,
 				F92C55771F94C06E00476CFB /* Products */,
 			);
@@ -60,6 +83,8 @@
 			children = (
 				F92C55791F94C06E00476CFB /* AppDelegate.swift */,
 				F92C557B1F94C06E00476CFB /* ViewController.swift */,
+				72659CF4200372280054F96D /* SearchPushRow.swift */,
+				72AEFE121FDE95DD0085FDCA /* addArbeitsscheinVC.swift */,
 				F92C557D1F94C06E00476CFB /* Main.storyboard */,
 				F949A1231F953DF300641596 /* rz_logo.jpg */,
 				F9807B3A1F97DCEB001BD351 /* rz_logo.jpg */,
@@ -80,6 +105,7 @@
 				F92C55721F94C06E00476CFB /* Sources */,
 				F92C55731F94C06E00476CFB /* Frameworks */,
 				F92C55741F94C06E00476CFB /* Resources */,
+				72AEFE111FDE95490085FDCA /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -144,8 +170,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				72659CF5200372280054F96D /* SearchPushRow.swift in Sources */,
 				F92C557C1F94C06E00476CFB /* ViewController.swift in Sources */,
 				F92C557A1F94C06E00476CFB /* AppDelegate.swift in Sources */,
+				72AEFE131FDE95DD0085FDCA /* addArbeitsscheinVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -284,6 +312,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 87MWS54AN4;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = AOS/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = SSIT.AOS;
@@ -299,6 +331,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 87MWS54AN4;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = AOS/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = SSIT.AOS;
