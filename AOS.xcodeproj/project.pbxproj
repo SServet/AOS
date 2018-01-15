@@ -11,6 +11,8 @@
 		72AEFE0F1FDE95490085FDCA /* Eureka.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 72AEFE0E1FDE95490085FDCA /* Eureka.framework */; };
 		72AEFE101FDE95490085FDCA /* Eureka.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 72AEFE0E1FDE95490085FDCA /* Eureka.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		72AEFE131FDE95DD0085FDCA /* addArbeitsscheinVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72AEFE121FDE95DD0085FDCA /* addArbeitsscheinVC.swift */; };
+		72FBCF38200CA4E500CCADB7 /* addProjektVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72FBCF37200CA4E500CCADB7 /* addProjektVC.swift */; };
+		72FBCF3A200CA66100CCADB7 /* addTicketVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72FBCF39200CA66100CCADB7 /* addTicketVC.swift */; };
 		F92C557A1F94C06E00476CFB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F92C55791F94C06E00476CFB /* AppDelegate.swift */; };
 		F92C557C1F94C06E00476CFB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F92C557B1F94C06E00476CFB /* ViewController.swift */; };
 		F92C557F1F94C06E00476CFB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F92C557D1F94C06E00476CFB /* Main.storyboard */; };
@@ -38,6 +40,8 @@
 		72659CF4200372280054F96D /* SearchPushRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchPushRow.swift; sourceTree = "<group>"; };
 		72AEFE0E1FDE95490085FDCA /* Eureka.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Eureka.framework; path = Carthage/Build/iOS/Eureka.framework; sourceTree = "<group>"; };
 		72AEFE121FDE95DD0085FDCA /* addArbeitsscheinVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = addArbeitsscheinVC.swift; sourceTree = "<group>"; };
+		72FBCF37200CA4E500CCADB7 /* addProjektVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = addProjektVC.swift; path = /Users/markoperic/Documents/Schule/Projekt/AOS/AOS/addProjektVC.swift; sourceTree = "<absolute>"; };
+		72FBCF39200CA66100CCADB7 /* addTicketVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = addTicketVC.swift; sourceTree = "<group>"; };
 		F92C55761F94C06E00476CFB /* AOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F92C55791F94C06E00476CFB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F92C557B1F94C06E00476CFB /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -81,11 +85,13 @@
 		F92C55781F94C06E00476CFB /* AOS */ = {
 			isa = PBXGroup;
 			children = (
+				72FBCF37200CA4E500CCADB7 /* addProjektVC.swift */,
 				F92C55791F94C06E00476CFB /* AppDelegate.swift */,
 				F92C557B1F94C06E00476CFB /* ViewController.swift */,
 				72659CF4200372280054F96D /* SearchPushRow.swift */,
 				72AEFE121FDE95DD0085FDCA /* addArbeitsscheinVC.swift */,
 				F92C557D1F94C06E00476CFB /* Main.storyboard */,
+				72FBCF39200CA66100CCADB7 /* addTicketVC.swift */,
 				F949A1231F953DF300641596 /* rz_logo.jpg */,
 				F9807B3A1F97DCEB001BD351 /* rz_logo.jpg */,
 				F92C55801F94C06E00476CFB /* Assets.xcassets */,
@@ -171,6 +177,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				72659CF5200372280054F96D /* SearchPushRow.swift in Sources */,
+				72FBCF38200CA4E500CCADB7 /* addProjektVC.swift in Sources */,
+				72FBCF3A200CA66100CCADB7 /* addTicketVC.swift in Sources */,
 				F92C557C1F94C06E00476CFB /* ViewController.swift in Sources */,
 				F92C557A1F94C06E00476CFB /* AppDelegate.swift in Sources */,
 				72AEFE131FDE95DD0085FDCA /* addArbeitsscheinVC.swift in Sources */,

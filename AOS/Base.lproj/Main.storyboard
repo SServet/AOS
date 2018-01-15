@@ -200,6 +200,9 @@
                                 <state key="normal" title="+ Projekt hinzufügen">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
+                                <connections>
+                                    <segue destination="8lu-CD-F2L" kind="show" id="yXc-Hv-xbr"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cT6-zC-Ik4">
                                 <rect key="frame" x="20" y="139" width="335" height="30"/>
@@ -233,6 +236,21 @@
             </objects>
             <point key="canvasLocation" x="766" y="-573"/>
         </scene>
+        <!--Add ProjektVC-->
+        <scene sceneID="kwM-k6-34k">
+            <objects>
+                <viewController id="8lu-CD-F2L" customClass="addProjektVC" customModule="AOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="6Ym-aM-2xQ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <viewLayoutGuide key="safeArea" id="9lx-Bf-gBh"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="eKY-cf-1Le" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1542" y="-573"/>
+        </scene>
         <!--Tickets-->
         <scene sceneID="DUH-Gh-vnQ">
             <objects>
@@ -241,8 +259,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7SX-vP-aAe">
-                                <rect key="frame" x="20" y="104" width="335" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7SX-vP-aAe">
+                                <rect key="frame" x="16" y="101" width="335" height="30"/>
                                 <color key="backgroundColor" red="0.0" green="0.68235294120000001" blue="0.94117647059999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="zEH-DM-gRN"/>
@@ -252,6 +270,9 @@
                                 <state key="normal" title="+ Ticket hinzufügen">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
+                                <connections>
+                                    <segue destination="0it-ib-24g" kind="show" id="dgv-0a-6q6"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cks-Bb-eTx">
                                 <rect key="frame" x="20" y="139" width="335" height="30"/>
@@ -278,10 +299,28 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="HYK-sE-dhX"/>
                     </view>
+                    <navigationItem key="navigationItem" title="Tickets" id="Mmz-eK-ktg">
+                        <barButtonItem key="backBarButtonItem" title=" " id="V25-8x-2lj"/>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="d8S-5Z-Txt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="476" y="903"/>
+        </scene>
+        <!--Add TicketVC-->
+        <scene sceneID="rSp-C0-xp5">
+            <objects>
+                <viewController id="0it-ib-24g" customClass="addTicketVC" customModule="AOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="5PB-Ua-mho">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <viewLayoutGuide key="safeArea" id="pf8-ql-YWW"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="09s-mo-Jjb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1191" y="903"/>
         </scene>
         <!--Einstellungen-->
         <scene sceneID="wap-Ta-TRh">
