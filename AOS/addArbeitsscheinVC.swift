@@ -8,21 +8,22 @@
 
 import UIKit
 import Eureka
+import Foundation
 
 class addArbeitsscheinVC: FormViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
         form +++ Section("Arbeitsschein hinzufügen")
-            <<< PushRow<String>(){
+            <<< SearchPushRow<SearchItemModel>("Kunde"){
                 $0.title = "Kunde"
-                $0.options = ["Kunde1", "Kunde2"]
-                $0.selectorTitle = "Wähle einen Kunden"
+                $0.options = [SearchItemModel.init(1, "Kunde1"), SearchItemModel.init(2, "Kunde2"), SearchItemModel.init(3, "Kunde3")]
+                $0.selectorTitle = "Kunden auswählen"
             }
-            <<< PushRow<String>(){
+            <<< SearchPushRow<SearchItemModel>("Artikel"){
                 $0.title = "Artikel"
-                $0.options = ["Artikel1", "Artikel2"]
-                $0.selectorTitle = "Wähle einen Artikel"
+                $0.options = [SearchItemModel.init(1, "Artikel1"), SearchItemModel.init(2, "Artikel2"), SearchItemModel.init(3, "Artikel3")]
+                $0.selectorTitle = "Artikel auswählen"
             }
             <<< IntRow() {
                 $0.title = "Artikelanzahl"

@@ -121,6 +121,9 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <viewLayoutGuide key="safeArea" id="edS-nA-o42"/>
                     </view>
+                    <navigationItem key="navigationItem" id="3Ae-gR-GJI">
+                        <barButtonItem key="backBarButtonItem" title=" " id="zOd-gR-HCP"/>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bvg-Wx-VUa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -246,6 +249,9 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <viewLayoutGuide key="safeArea" id="9lx-Bf-gBh"/>
                     </view>
+                    <navigationItem key="navigationItem" id="GWH-O4-pkQ">
+                        <barButtonItem key="backBarButtonItem" title=" " id="sOf-Fc-OFi"/>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eKY-cf-1Le" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -317,6 +323,9 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <viewLayoutGuide key="safeArea" id="pf8-ql-YWW"/>
                     </view>
+                    <navigationItem key="navigationItem" id="voY-bS-r3o">
+                        <barButtonItem key="backBarButtonItem" title=" " id="9yk-Ce-Mcn"/>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="09s-mo-Jjb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
