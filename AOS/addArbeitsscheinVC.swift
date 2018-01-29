@@ -10,6 +10,31 @@ import UIKit
 import Eureka
 import Foundation
 
+struct SearchItemModel {
+    let id: Int
+    let title: String
+    
+    init(_ id:Int,_ title:String) {
+        self.id = id
+        self.title = title
+    }
+}
+extension SearchItemModel: SearchItem {
+    func matchesSearchQuery(_ query: String) -> Bool {
+        return title.contains(query)
+    }
+}
+extension SearchItemModel: Equatable {
+    static func == (lhs: SearchItemModel, rhs: SearchItemModel) -> Bool {
+        return lhs.id == rhs.id
+    }
+}
+extension SearchItemModel: CustomStringConvertible {
+    var description: String {
+        return title
+    }
+}
+
 class addArbeitsscheinVC: FormViewController {
     
     override func viewDidLoad() {
@@ -50,7 +75,7 @@ class addArbeitsscheinVC: FormViewController {
                 $0.title = "Datum bis"
                 $0.value = Date(timeIntervalSinceReferenceDate: 0)
             }
-            <<< CountDownInlineRow(){
+            <<< TimeRow(){
                 $0.title = "Uhrzeit von"
                 var dateComp = DateComponents()
                 dateComp.hour = 0
@@ -58,7 +83,7 @@ class addArbeitsscheinVC: FormViewController {
                 dateComp.timeZone = TimeZone.current
                 $0.value = Calendar.current.date(from: dateComp)
             }
-            <<< CountDownInlineRow(){
+            <<< TimeRow(){
                 $0.title = "Uhrzeit bis"
                 var dateComp = DateComponents()
                 dateComp.hour = 00
