@@ -8,6 +8,7 @@
 
 import UIKit
 import Eureka
+import Alamofire
 import Foundation
 
 struct SearchItemModel {
@@ -37,18 +38,78 @@ extension SearchItemModel: CustomStringConvertible {
 
 class addArbeitsscheinVC: FormViewController {
     
+    let URL_GET_KUNDEN = "http://aos.ssit.at/php/v1/kunden.php"
+    let URL_GET_ARTIKEL = "http://aos.ssit.at/php/v1/artikel.php"
+    let URL_GET_TTYP = "http://aos.ssit.at/php/v1/ttyp.php"
+    let URL_GET_TART = "http://aos.ssit.at/php/v1/tart.php"
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         form +++ Section("Arbeitsschein hinzufügen")
-            <<< SearchPushRow<SearchItemModel>("Kunde"){
-                $0.title = "Kunde"
-                $0.options = [SearchItemModel.init(1, "Kunde1"), SearchItemModel.init(2, "Kunde2"), SearchItemModel.init(3, "Kunde3")]
-                $0.selectorTitle = "Kunden auswählen"
+            <<< SearchPushRow<SearchItemModel>("Kunde"){ row in
+                row.title = "Kunde"
+                Alamofire.request(URL_GET_KUNDEN, method: .get).responseJSON{
+                    response in
+                    if let result = response.result.value{
+                        let jsonData = result as! NSDictionary
+                        
+                        if(!(jsonData.value(forKey: "error") as! Bool)){
+                            
+                            let customer = jsonData.value(forKey: "customer") as! NSArray
+                            let companyname = customer.value(forKey: "companyname") as! NSArray
+                            let kid = customer.value(forKey: "kid") as! NSArray
+                            
+                            var sarr = [SearchItemModel]()
+                            for i in 0..<companyname.count{
+                                if companyname[i] is NSString{
+                                    var a = kid[i] as! NSString
+                                    var b:String = a as String
+                                    b += ". " + ((companyname[i] as! NSString) as String)
+                                    sarr.append(SearchItemModel.init(Int((kid[i] as! NSString).intValue), b))
+                                }
+                            }
+                            
+                            row.options = sarr
+                            row.selectorTitle = "Wähle Sie einen Kunden aus"
+                        }
+                    }
+                    
+                }
+                /*
+                row.options = [SearchItemModel.init(1, "Kunde1"), SearchItemModel.init(2, "Kunde2"), SearchItemModel.init(3, "Kunde3")]
+                row.selectorTitle = "Kunden auswählen"*/
             }
-            <<< SearchPushRow<SearchItemModel>("Artikel"){
-                $0.title = "Artikel"
-                $0.options = [SearchItemModel.init(1, "Artikel1"), SearchItemModel.init(2, "Artikel2"), SearchItemModel.init(3, "Artikel3")]
-                $0.selectorTitle = "Artikel auswählen"
+            <<< SearchPushRow<SearchItemModel>("Artikel"){ row in
+                row.title = "Artikel"
+                Alamofire.request(URL_GET_ARTIKEL, method: .get).responseJSON{
+                    response in
+                    
+                    if let result = response.result.value{
+                        let jsonData = result as! NSDictionary
+                        
+                        if(!(jsonData.value(forKey: "error") as! Bool)){
+                            
+                            let article = jsonData.value(forKey: "articles") as! NSArray
+                            
+                            let articlename = article.value(forKey: "articlename") as! NSArray
+                            let artid = article.value(forKey: "artid") as! NSArray
+                            
+                            var sarr = [SearchItemModel]()
+                            for i in 0..<articlename.count{
+                                if articlename[i] is NSString{
+                                    var a = artid[i] as! NSString
+                                    var b:String = a as String
+                                    b += ". " + ((articlename[i] as! NSString) as String)
+                                    sarr.append(SearchItemModel.init(Int((artid[i] as! NSString).intValue), b))
+                                }
+                            }
+                            
+                            row.options = sarr
+                            row.selectorTitle = "Wählen Sie ein Artikel aus"
+                        }
+                    }
+                    
+                }
             }
             <<< IntRow() {
                 $0.title = "Artikelanzahl"
@@ -57,15 +118,68 @@ class addArbeitsscheinVC: FormViewController {
             <<< TextRow() {
                 $0.title = "Beschreibung"
             }
-            <<< PushRow<String>(){
-                $0.title = "Termintyp"
-                $0.options = ["Update", "Installation"]
-                $0.selectorTitle = "Wähle einen Termintypen"
+            <<< PushRow<String>(){ row in
+                row.title = "Termintyp"
+                Alamofire.request(URL_GET_TTYP, method: .get).responseJSON{
+                    response in
+                    
+                    if let result = response.result.value{
+                        let jsonData = result as! NSDictionary
+                        
+                        if(!(jsonData.value(forKey: "error") as! Bool)){
+                            
+                            let ttyp = jsonData.value(forKey: "ttyp") as! NSArray
+                            
+                            let termintyp = ttyp.value(forKey: "description") as! NSArray
+                            let ttid = ttyp.value(forKey: "ttid") as! NSArray
+                            
+                            let termintypen = ttyp.mutableCopy() as! NSMutableArray
+                            
+                            for i in 0..<termintyp.count{
+                                if termintyp[i] is NSString{
+                                    var a = ((ttid[i] as! NSString) as String) + ". " + ((termintyp[i] as! NSString) as String) as String
+                                    termintypen.replaceObject(at: i, with: a)
+                                }
+                            }
+                            
+                            row.options = termintypen.flatMap({ $0 as? String })
+                            row.selectorTitle = "Wähle Sie einen Termintyp aus"
+                        }
+                    }
+                    
+                }
             }
-            <<< PushRow<String>(){
-                $0.title = "Tätigkeit"
-                $0.options = ["Vor Ort", "Fernwartung"]
-                $0.selectorTitle = "Wähle eine Tätigkeit"
+            <<< PushRow<String>(){ row in
+                row.title = "Tätigkeit"
+                Alamofire.request(URL_GET_TART, method: .get).responseJSON{
+                    response in
+                    
+                    if let result = response.result.value{
+                        let jsonData = result as! NSDictionary
+                        
+                        if(!(jsonData.value(forKey: "error") as! Bool)){
+                            
+                            let tart = jsonData.value(forKey: "tart") as! NSArray
+                            
+                            
+                            let taetigkeit = tart.value(forKey: "description") as! NSArray
+                            let tkid = tart.value(forKey: "tkid") as! NSArray
+                            
+                            let taetigkeiten = taetigkeit.mutableCopy() as! NSMutableArray
+                            
+                            for i in 0..<taetigkeit.count{
+                                if taetigkeit[i] is NSString{
+                                    var a = ((tkid[i] as! NSString) as String) + ". " + ((taetigkeit[i] as! NSString) as String) as String
+                                    taetigkeiten.replaceObject(at: i, with: a)
+                                }
+                            }
+                            
+                            row.options = taetigkeiten.flatMap({ $0 as? String })
+                            row.selectorTitle = "Wählen Sie eine Tätigkeit aus"
+                        }
+                    }
+                    
+                }
             }
             <<< DateRow(){
                 $0.title = "Datum von"

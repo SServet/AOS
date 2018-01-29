@@ -11,8 +11,13 @@
 		72AEFE0F1FDE95490085FDCA /* Eureka.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 72AEFE0E1FDE95490085FDCA /* Eureka.framework */; };
 		72AEFE101FDE95490085FDCA /* Eureka.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 72AEFE0E1FDE95490085FDCA /* Eureka.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		72AEFE131FDE95DD0085FDCA /* addArbeitsscheinVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72AEFE121FDE95DD0085FDCA /* addArbeitsscheinVC.swift */; };
-		72FBCF38200CA4E500CCADB7 /* addProjektVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72FBCF37200CA4E500CCADB7 /* addProjektVC.swift */; };
 		72FBCF3A200CA66100CCADB7 /* addTicketVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72FBCF39200CA66100CCADB7 /* addTicketVC.swift */; };
+		F9136AC1201F1C0C00F37485 /* addProjektVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9136AC0201F1C0C00F37485 /* addProjektVC.swift */; };
+		F9136AC3201F1E8300F37485 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9136AC2201F1E8300F37485 /* Alamofire.framework */; };
+		F9136AC5201F1EE600F37485 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9136AC4201F1EE600F37485 /* MenuViewController.swift */; };
+		F9136AC6201F1FEF00F37485 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9136AC2201F1E8300F37485 /* Alamofire.framework */; };
+		F9136AC7201F1FEF00F37485 /* Alamofire.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F9136AC2201F1E8300F37485 /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		F9136AC9201F20B900F37485 /* LocalAuthentication.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9136AC8201F20B900F37485 /* LocalAuthentication.framework */; };
 		F92C557A1F94C06E00476CFB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F92C55791F94C06E00476CFB /* AppDelegate.swift */; };
 		F92C557C1F94C06E00476CFB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F92C557B1F94C06E00476CFB /* ViewController.swift */; };
 		F92C557F1F94C06E00476CFB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F92C557D1F94C06E00476CFB /* Main.storyboard */; };
@@ -30,6 +35,7 @@
 			dstSubfolderSpec = 10;
 			files = (
 				72AEFE101FDE95490085FDCA /* Eureka.framework in Embed Frameworks */,
+				F9136AC7201F1FEF00F37485 /* Alamofire.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -40,8 +46,11 @@
 		72659CF4200372280054F96D /* SearchPushRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchPushRow.swift; sourceTree = "<group>"; };
 		72AEFE0E1FDE95490085FDCA /* Eureka.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Eureka.framework; path = Carthage/Build/iOS/Eureka.framework; sourceTree = "<group>"; };
 		72AEFE121FDE95DD0085FDCA /* addArbeitsscheinVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = addArbeitsscheinVC.swift; sourceTree = "<group>"; };
-		72FBCF37200CA4E500CCADB7 /* addProjektVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = addProjektVC.swift; path = /Users/markoperic/Documents/Schule/Projekt/AOS/AOS/addProjektVC.swift; sourceTree = "<absolute>"; };
 		72FBCF39200CA66100CCADB7 /* addTicketVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = addTicketVC.swift; sourceTree = "<group>"; };
+		F9136AC0201F1C0C00F37485 /* addProjektVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = addProjektVC.swift; sourceTree = "<group>"; };
+		F9136AC2201F1E8300F37485 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
+		F9136AC4201F1EE600F37485 /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
+		F9136AC8201F20B900F37485 /* LocalAuthentication.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LocalAuthentication.framework; path = System/Library/Frameworks/LocalAuthentication.framework; sourceTree = SDKROOT; };
 		F92C55761F94C06E00476CFB /* AOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F92C55791F94C06E00476CFB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F92C557B1F94C06E00476CFB /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -58,6 +67,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F9136AC9201F20B900F37485 /* LocalAuthentication.framework in Frameworks */,
+				F9136AC3201F1E8300F37485 /* Alamofire.framework in Frameworks */,
+				F9136AC6201F1FEF00F37485 /* Alamofire.framework in Frameworks */,
 				72AEFE0F1FDE95490085FDCA /* Eureka.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -65,12 +77,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		F9136ABF201F1BC300F37485 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F9136AC8201F20B900F37485 /* LocalAuthentication.framework */,
+				F9136AC2201F1E8300F37485 /* Alamofire.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		F92C556D1F94C06E00476CFB = {
 			isa = PBXGroup;
 			children = (
 				72AEFE0E1FDE95490085FDCA /* Eureka.framework */,
 				F92C55781F94C06E00476CFB /* AOS */,
 				F92C55771F94C06E00476CFB /* Products */,
+				F9136ABF201F1BC300F37485 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -85,7 +107,7 @@
 		F92C55781F94C06E00476CFB /* AOS */ = {
 			isa = PBXGroup;
 			children = (
-				72FBCF37200CA4E500CCADB7 /* addProjektVC.swift */,
+				F9136AC0201F1C0C00F37485 /* addProjektVC.swift */,
 				F92C55791F94C06E00476CFB /* AppDelegate.swift */,
 				F92C557B1F94C06E00476CFB /* ViewController.swift */,
 				72659CF4200372280054F96D /* SearchPushRow.swift */,
@@ -97,6 +119,7 @@
 				F92C55801F94C06E00476CFB /* Assets.xcassets */,
 				F92C55821F94C06E00476CFB /* LaunchScreen.storyboard */,
 				F92C55851F94C06E00476CFB /* Info.plist */,
+				F9136AC4201F1EE600F37485 /* MenuViewController.swift */,
 			);
 			path = AOS;
 			sourceTree = "<group>";
@@ -177,8 +200,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				72659CF5200372280054F96D /* SearchPushRow.swift in Sources */,
-				72FBCF38200CA4E500CCADB7 /* addProjektVC.swift in Sources */,
+				F9136AC1201F1C0C00F37485 /* addProjektVC.swift in Sources */,
 				72FBCF3A200CA66100CCADB7 /* addTicketVC.swift in Sources */,
+				F9136AC5201F1EE600F37485 /* MenuViewController.swift in Sources */,
 				F92C557C1F94C06E00476CFB /* ViewController.swift in Sources */,
 				F92C557A1F94C06E00476CFB /* AppDelegate.swift in Sources */,
 				72AEFE131FDE95DD0085FDCA /* addArbeitsscheinVC.swift in Sources */,
