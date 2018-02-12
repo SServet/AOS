@@ -22,7 +22,7 @@ struct SearchItemModel {
 }
 extension SearchItemModel: SearchItem {
     func matchesSearchQuery(_ query: String) -> Bool {
-        return title.contains(query)
+        return title.lowercased().contains(query.lowercased())
     }
 }
 extension SearchItemModel: Equatable {
