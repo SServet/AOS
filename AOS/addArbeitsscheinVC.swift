@@ -36,7 +36,7 @@ extension SearchItemModel: CustomStringConvertible {
     }
 }
 
-class addArbeitsscheinVC: FormViewController {
+class addArbeitsscheinVC: FormViewController{
     
     let URL_GET_KUNDEN = "http://aos.ssit.at/php/v1/kunden.php"
     let URL_GET_ARTIKEL = "http://aos.ssit.at/php/v1/artikel.php"
@@ -77,12 +77,11 @@ class addArbeitsscheinVC: FormViewController {
                     }
                     
                 }
-                /*
-                row.options = [SearchItemModel.init(1, "Kunde1"), SearchItemModel.init(2, "Kunde2"), SearchItemModel.init(3, "Kunde3")]
-                row.selectorTitle = "Kunden auswählen"*/
+                
             }
-            <<< SearchPushRow<SearchItemModel>("Artikel"){ row in
-                row.title = "Artikel"
+            
+            <<< SearchPushRow<SearchItemModel>(){row in
+                row.title = "Artikel hinzufügen"
                 Alamofire.request(URL_GET_ARTIKEL, method: .get).responseJSON{
                     response in
                     
@@ -113,20 +112,21 @@ class addArbeitsscheinVC: FormViewController {
                     
                 }
             }
+            
             <<< IntRow() {
-                $0.title = "Artikelanzahl"
+                $0.title = "Artikelanzahl hinzufügen"
                 $0.value = 1
             }
             
-            <<< MultipleSelectorRow<String>(){
+            <<< MultipleSelectorRow<String>("Vordefinierte Beschreibung"){
                 $0.title = "Vordefinierte Beschreibung"
                 $0.options = ["Protokolle OK", "Sicherung OK", "Update OK"]
             }
             
-            <<< TextRow() {
+            <<< TextRow("Beschreibung") {
                 $0.title = "Beschreibung"
             }
-            <<< PushRow<String>(){ row in
+            <<< PushRow<String>("Termintyp"){ row in
                 row.title = "Termintyp"
                 Alamofire.request(URL_GET_TTYP, method: .get).responseJSON{
                     response in
@@ -157,7 +157,7 @@ class addArbeitsscheinVC: FormViewController {
                     
                 }
             }
-            <<< PushRow<String>(){ row in
+            <<< PushRow<String>("Tätigkeit"){ row in
                 row.title = "Tätigkeit"
                 Alamofire.request(URL_GET_TART, method: .get).responseJSON{
                     response in
@@ -191,11 +191,13 @@ class addArbeitsscheinVC: FormViewController {
             }
             <<< DateRow(){
                 $0.title = "Datum von"
-                $0.value = Date(timeIntervalSinceReferenceDate: 0)
+                let date = Date()
+                $0.value = Calendar.current.startOfDay(for: date)
             }
             <<< DateRow(){
-                $0.title = "Datum bis"
-                $0.value = Date(timeIntervalSinceReferenceDate: 0)
+                $0.title = "Datum von"
+                let date = Date()
+                $0.value = Calendar.current.startOfDay(for: date)
             }
             <<< TimeRow(){
                 $0.title = "Uhrzeit von"
@@ -219,29 +221,31 @@ class addArbeitsscheinVC: FormViewController {
             <<< IntRow() {
                 $0.title = "Kulanzzeit"
             }
-            <<< IntRow() {
-                $0.title = "Artikelanzahl"
-        }
+            
+            <<< ButtonRow("A"){
+                $0.title = "A"
+                $0.onCellSelection(artikel)
+            }
+            
             <<< ButtonRow("Senden"){
                 $0.title = "Senden"
-                $0.onCellSelection(self.buttontapped)
-        }
-        }
+                $0.onCellSelection(buttontapped)
+            }
+    }
+    
+    
+    
     func buttontapped(cell: ButtonCellOf<String>, row: ButtonRow){
         let kid = getID(_tag: "Kunde")
-        let aid = getID(_tag: "Artikel")
         let ttid = getID(_tag: "Termintyp")
-        let tid  = getID(_tag: "Taetigkeit")
+        let tid  = getID(_tag: "Tätigkeit")
         let descr = getString(_tag: "Beschreibung")
         let dfrom = getDate(_tag: String(describing: form.rowBy(tag: "Datum von")?.baseValue))
         let kgrund = getString(_tag: "Kulanzgrund")
         let kzeit = getString(_tag: "Kulanzzeit")
         let defaultval = UserDefaults.standard
         
-        print(dfrom)
-        
         if let mid = defaultval.string(forKey: "userid"){
-            print(mid)
         }
         
         if(checkID(id1: kid, id2: ttid, id3: tid) && descr != ""){
@@ -249,7 +253,11 @@ class addArbeitsscheinVC: FormViewController {
         }else{
             popup(title_: "Warnung", message_: "Es wurde keine Beschreibung geschrieben!")
         }
-        
+    }
+    
+    func artikel(cell: ButtonCellOf<String>, row: ButtonRow){
+        let atvc = self.storyboard?.instantiateViewController(withIdentifier: "ArtikelTVC") as! UITableViewController
+        self.navigationController?.pushViewController(atvc, animated: true)
     }
     
     func getID(_tag: String) -> Int{
@@ -258,20 +266,24 @@ class addArbeitsscheinVC: FormViewController {
         if(val  != nil){
             let a = String(describing: val)
             let b = a.components(separatedBy: "(")
-            let c = b[1].components(separatedBy: ".")
-            return Int(c[0]) as! Int
+            let c = b[1].components(separatedBy: "\"")
+            if c.count > 1{
+                let d = c[1].components(separatedBy: ".")
+                return Int(d[0]) as! Int
+            }
+            let d = c[0].components(separatedBy: ".")
+            return Int(d[0]) as! Int
         }
         return -1;
     }
     
     func getDate(_tag: String)->Date{
         let a = _tag.components(separatedBy: "(")
-        print(a)
         if a.contains("nil") == false{
             let b = a[1].components(separatedBy: " ")
             let df = DateFormatter()
+            df.dateStyle = .short
             let date = df.date(from: b[0])
-            print(date)
             if(date != nil){
                 return date!
             }
@@ -281,8 +293,31 @@ class addArbeitsscheinVC: FormViewController {
     
     func getString(_tag: String) -> String{
         let row: TextRow? = form.rowBy(tag: _tag)
+        var a = [String]()
         if(row?.value != nil){
+            if(form.rowBy(tag: "Vordefinierte Beschreibung")?.baseValue != nil){
+                let arr = String(describing: form.rowBy(tag: "Vordefinierte Beschreibung")?.baseValue).components(separatedBy: "(")
+                let arr1 = arr[2].components(separatedBy: "[")
+                let arr2 = arr1[1].components(separatedBy: "\"")
+                for tt in arr2{
+                    if tt != "" && tt != ", " && tt != "]))"{
+                        a.append(tt)
+                    }
+                }
+                return (row?.value) as! String + String(describing: a)
+            }
             return (row?.value) as! String
+        }
+        if(form.rowBy(tag: "Vordefinierte Beschreibung")?.baseValue != nil){
+            let arr = String(describing: form.rowBy(tag: "Vordefinierte Beschreibung")?.baseValue).components(separatedBy: "(")
+            let arr1 = arr[2].components(separatedBy: "[")
+            let arr2 = arr1[1].components(separatedBy: "\"")
+            for tt in arr2{
+                if tt != "" && tt != ", " && tt != "]))"{
+                    a.append(tt)
+                }
+            }
+            return String(describing: a)
         }
         return ""
     }

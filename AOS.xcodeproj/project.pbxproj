@@ -23,6 +23,10 @@
 		F92C557F1F94C06E00476CFB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F92C557D1F94C06E00476CFB /* Main.storyboard */; };
 		F92C55811F94C06E00476CFB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F92C55801F94C06E00476CFB /* Assets.xcassets */; };
 		F92C55841F94C06E00476CFB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F92C55821F94C06E00476CFB /* LaunchScreen.storyboard */; };
+		F93D9F4720567A86006B8DB9 /* MGSwipeTableCell.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F93D9F4620567A86006B8DB9 /* MGSwipeTableCell.framework */; };
+		F93D9F4820567A8E006B8DB9 /* MGSwipeTableCell.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F93D9F4620567A86006B8DB9 /* MGSwipeTableCell.framework */; };
+		F93D9F4920567A8E006B8DB9 /* MGSwipeTableCell.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F93D9F4620567A86006B8DB9 /* MGSwipeTableCell.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		F93D9F4F20569D5E006B8DB9 /* ArtikelTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F93D9F4E20569D5E006B8DB9 /* ArtikelTVC.swift */; };
 		F949A1241F953DF300641596 /* rz_logo.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F949A1231F953DF300641596 /* rz_logo.jpg */; };
 		F9807B3B1F97DCEC001BD351 /* rz_logo.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F9807B3A1F97DCEB001BD351 /* rz_logo.jpg */; };
 /* End PBXBuildFile section */
@@ -35,6 +39,7 @@
 			dstSubfolderSpec = 10;
 			files = (
 				72AEFE101FDE95490085FDCA /* Eureka.framework in Embed Frameworks */,
+				F93D9F4920567A8E006B8DB9 /* MGSwipeTableCell.framework in Embed Frameworks */,
 				F9136AC7201F1FEF00F37485 /* Alamofire.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -58,6 +63,9 @@
 		F92C55801F94C06E00476CFB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F92C55831F94C06E00476CFB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F92C55851F94C06E00476CFB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F93D9F4620567A86006B8DB9 /* MGSwipeTableCell.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MGSwipeTableCell.framework; path = Carthage/Build/iOS/MGSwipeTableCell.framework; sourceTree = "<group>"; };
+		F93D9F4A20568367006B8DB9 /* AOS-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AOS-Bridging-Header.h"; sourceTree = "<group>"; };
+		F93D9F4E20569D5E006B8DB9 /* ArtikelTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtikelTVC.swift; sourceTree = "<group>"; };
 		F949A1231F953DF300641596 /* rz_logo.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = rz_logo.jpg; sourceTree = "<group>"; };
 		F9807B3A1F97DCEB001BD351 /* rz_logo.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = rz_logo.jpg; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -67,9 +75,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F93D9F4720567A86006B8DB9 /* MGSwipeTableCell.framework in Frameworks */,
 				F9136AC9201F20B900F37485 /* LocalAuthentication.framework in Frameworks */,
 				F9136AC3201F1E8300F37485 /* Alamofire.framework in Frameworks */,
 				F9136AC6201F1FEF00F37485 /* Alamofire.framework in Frameworks */,
+				F93D9F4820567A8E006B8DB9 /* MGSwipeTableCell.framework in Frameworks */,
 				72AEFE0F1FDE95490085FDCA /* Eureka.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -80,6 +90,7 @@
 		F9136ABF201F1BC300F37485 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F93D9F4620567A86006B8DB9 /* MGSwipeTableCell.framework */,
 				F9136AC8201F20B900F37485 /* LocalAuthentication.framework */,
 				F9136AC2201F1E8300F37485 /* Alamofire.framework */,
 			);
@@ -107,6 +118,7 @@
 		F92C55781F94C06E00476CFB /* AOS */ = {
 			isa = PBXGroup;
 			children = (
+				F93D9F4E20569D5E006B8DB9 /* ArtikelTVC.swift */,
 				F9136AC0201F1C0C00F37485 /* addProjektVC.swift */,
 				F92C55791F94C06E00476CFB /* AppDelegate.swift */,
 				F92C557B1F94C06E00476CFB /* ViewController.swift */,
@@ -120,6 +132,7 @@
 				F92C55821F94C06E00476CFB /* LaunchScreen.storyboard */,
 				F92C55851F94C06E00476CFB /* Info.plist */,
 				F9136AC4201F1EE600F37485 /* MenuViewController.swift */,
+				F93D9F4A20568367006B8DB9 /* AOS-Bridging-Header.h */,
 			);
 			path = AOS;
 			sourceTree = "<group>";
@@ -157,6 +170,7 @@
 				TargetAttributes = {
 					F92C55751F94C06E00476CFB = {
 						CreatedOnToolsVersion = 9.0;
+						LastSwiftMigration = 0920;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -204,6 +218,7 @@
 				72FBCF3A200CA66100CCADB7 /* addTicketVC.swift in Sources */,
 				F9136AC5201F1EE600F37485 /* MenuViewController.swift in Sources */,
 				F92C557C1F94C06E00476CFB /* ViewController.swift in Sources */,
+				F93D9F4F20569D5E006B8DB9 /* ArtikelTVC.swift in Sources */,
 				F92C557A1F94C06E00476CFB /* AppDelegate.swift in Sources */,
 				72AEFE131FDE95DD0085FDCA /* addArbeitsscheinVC.swift in Sources */,
 			);
@@ -342,6 +357,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 87MWS54AN4;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -352,6 +368,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = SSIT.AOS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "AOS/AOS-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -361,6 +379,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 87MWS54AN4;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -371,6 +390,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = SSIT.AOS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "AOS/AOS-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
