@@ -27,6 +27,7 @@
 		F93D9F4820567A8E006B8DB9 /* MGSwipeTableCell.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F93D9F4620567A86006B8DB9 /* MGSwipeTableCell.framework */; };
 		F93D9F4920567A8E006B8DB9 /* MGSwipeTableCell.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F93D9F4620567A86006B8DB9 /* MGSwipeTableCell.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		F93D9F4F20569D5E006B8DB9 /* ArtikelTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F93D9F4E20569D5E006B8DB9 /* ArtikelTVC.swift */; };
+		F93D9F51205C550D006B8DB9 /* ArticleDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F93D9F50205C550D006B8DB9 /* ArticleDelegate.swift */; };
 		F949A1241F953DF300641596 /* rz_logo.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F949A1231F953DF300641596 /* rz_logo.jpg */; };
 		F9807B3B1F97DCEC001BD351 /* rz_logo.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F9807B3A1F97DCEB001BD351 /* rz_logo.jpg */; };
 /* End PBXBuildFile section */
@@ -66,6 +67,7 @@
 		F93D9F4620567A86006B8DB9 /* MGSwipeTableCell.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MGSwipeTableCell.framework; path = Carthage/Build/iOS/MGSwipeTableCell.framework; sourceTree = "<group>"; };
 		F93D9F4A20568367006B8DB9 /* AOS-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AOS-Bridging-Header.h"; sourceTree = "<group>"; };
 		F93D9F4E20569D5E006B8DB9 /* ArtikelTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtikelTVC.swift; sourceTree = "<group>"; };
+		F93D9F50205C550D006B8DB9 /* ArticleDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleDelegate.swift; sourceTree = "<group>"; };
 		F949A1231F953DF300641596 /* rz_logo.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = rz_logo.jpg; sourceTree = "<group>"; };
 		F9807B3A1F97DCEB001BD351 /* rz_logo.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = rz_logo.jpg; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -133,6 +135,7 @@
 				F92C55851F94C06E00476CFB /* Info.plist */,
 				F9136AC4201F1EE600F37485 /* MenuViewController.swift */,
 				F93D9F4A20568367006B8DB9 /* AOS-Bridging-Header.h */,
+				F93D9F50205C550D006B8DB9 /* ArticleDelegate.swift */,
 			);
 			path = AOS;
 			sourceTree = "<group>";
@@ -216,6 +219,7 @@
 				72659CF5200372280054F96D /* SearchPushRow.swift in Sources */,
 				F9136AC1201F1C0C00F37485 /* addProjektVC.swift in Sources */,
 				72FBCF3A200CA66100CCADB7 /* addTicketVC.swift in Sources */,
+				F93D9F51205C550D006B8DB9 /* ArticleDelegate.swift in Sources */,
 				F9136AC5201F1EE600F37485 /* MenuViewController.swift in Sources */,
 				F92C557C1F94C06E00476CFB /* ViewController.swift in Sources */,
 				F93D9F4F20569D5E006B8DB9 /* ArtikelTVC.swift in Sources */,

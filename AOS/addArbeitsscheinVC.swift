@@ -36,14 +36,14 @@ extension SearchItemModel: CustomStringConvertible {
     }
 }
 
-class addArbeitsscheinVC: FormViewController{
-    
+class addArbeitsscheinVC: FormViewController, ArticleDelegate{
     let URL_GET_KUNDEN = "http://aos.ssit.at/php/v1/kunden.php"
     let URL_GET_ARTIKEL = "http://aos.ssit.at/php/v1/artikel.php"
     let URL_GET_TTYP = "http://aos.ssit.at/php/v1/ttyp.php"
     let URL_GET_TART = "http://aos.ssit.at/php/v1/tart.php"
     let URL_POST_AS = "http://aos.ssit.at/php/v1/asInsert.php"
     
+    var artikel = [String]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -80,7 +80,7 @@ class addArbeitsscheinVC: FormViewController{
                 
             }
             
-            <<< SearchPushRow<SearchItemModel>(){row in
+            <<< SearchPushRow<SearchItemModel>("Artikel"){row in
                 row.title = "Artikel hinzufügen"
                 Alamofire.request(URL_GET_ARTIKEL, method: .get).responseJSON{
                     response in
@@ -113,9 +113,14 @@ class addArbeitsscheinVC: FormViewController{
                 }
             }
             
-            <<< IntRow() {
+            <<< IntRow("ArtAnz") {
                 $0.title = "Artikelanzahl hinzufügen"
                 $0.value = 1
+            }
+            
+            <<< ButtonRow("Artikel hinzufügen"){
+                $0.title = "Artikel hinzufügen"
+                $0.onCellSelection(addArticle)
             }
             
             <<< MultipleSelectorRow<String>("Vordefinierte Beschreibung"){
@@ -222,9 +227,9 @@ class addArbeitsscheinVC: FormViewController{
                 $0.title = "Kulanzzeit"
             }
             
-            <<< ButtonRow("A"){
-                $0.title = "A"
-                $0.onCellSelection(artikel)
+            <<< ButtonRow("Artikel prüfen"){
+                $0.title = "Artikel prüfen"
+                $0.onCellSelection(checkArticle)
             }
             
             <<< ButtonRow("Senden"){
@@ -233,7 +238,9 @@ class addArbeitsscheinVC: FormViewController{
             }
     }
     
-    
+    func setArticle(_art: [String]){
+        artikel = _art
+    }
     
     func buttontapped(cell: ButtonCellOf<String>, row: ButtonRow){
         let kid = getID(_tag: "Kunde")
@@ -255,8 +262,19 @@ class addArbeitsscheinVC: FormViewController{
         }
     }
     
-    func artikel(cell: ButtonCellOf<String>, row: ButtonRow){
-        let atvc = self.storyboard?.instantiateViewController(withIdentifier: "ArtikelTVC") as! UITableViewController
+    func addArticle(cell: ButtonCellOf<String>, row: ButtonRow){
+        let id = getID(_tag: "Artikel")
+        let descr = getString(_tag: "Artikel")
+        let anz = form.rowBy(tag: "ArtAnz")?.baseValue as! Int
+        artikel.append(String(id) + ", " + descr + ", " + String(anz))
+        
+    }
+    
+    func checkArticle(cell: ButtonCellOf<String>, row: ButtonRow){
+        print(artikel)
+        let atvc = self.storyboard?.instantiateViewController(withIdentifier: "ArtikelTVC") as! ArtikelTVC
+        atvc.article = artikel
+        atvc.delegate = self
         self.navigationController?.pushViewController(atvc, animated: true)
     }
     
@@ -272,7 +290,10 @@ class addArbeitsscheinVC: FormViewController{
                 return Int(d[0]) as! Int
             }
             let d = c[0].components(separatedBy: ".")
-            return Int(d[0]) as! Int
+            if Int(d[0]) != nil{
+                return Int(d[0]) as! Int
+            }
+            return -1
         }
         return -1;
     }
@@ -319,6 +340,13 @@ class addArbeitsscheinVC: FormViewController{
             }
             return String(describing: a)
         }
+        
+        if(form.rowBy(tag: "Artikel")?.baseValue != nil){
+            let arr = String(describing: form.rowBy(tag: "Artikel")?.baseValue).characters.split(separator: "(", maxSplits: 1).map{String($0)}
+            let arr1 = arr[1].substring(to: arr[1].index(before: arr[1].endIndex)).components(separatedBy: ".")
+            return arr1[1]
+        }
+        
         return ""
     }
     

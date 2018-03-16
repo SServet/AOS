@@ -11,29 +11,23 @@ import MGSwipeTableCell
 
 class ArtikelTVC: UITableViewController {
     
-    var die_simpsons = [Person]()
-    
-    let homer = Person(name: "Homer", tätigkeit: "Vater")
-    let marge = Person(name: "Marge", tätigkeit: "Mutter")
-    let lisa  = Person(name: "Lisa", tätigkeit: "Tochter")
-    let bart  = Person(name: "Bart", tätigkeit: "Sohn")
-    
-    
-    
+    let ASArticle = addArbeitsscheinVC()
+    var article = [String]()
+    var delegate:ArticleDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        die_simpsons.append(homer)
-        die_simpsons.append(marge)
-        die_simpsons.append(lisa)
-        die_simpsons.append(bart)
-        
+        print("ArtikelTVC: " + String(describing: article))
         tableView.rowHeight = 66
         
     }
     
-    
+    override func willMove(toParentViewController parent: UIViewController?) {
+        super.willMove(toParentViewController:parent)
+        if parent == nil {
+            delegate?.setArticle(_art: article)
+        }
+    }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
@@ -42,7 +36,7 @@ class ArtikelTVC: UITableViewController {
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return die_simpsons.count
+        return article.count
     }
     
     
@@ -50,11 +44,12 @@ class ArtikelTVC: UITableViewController {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! MGSwipeTableCell
         
-        cell.textLabel?.text = die_simpsons[indexPath.row].name
-        cell.detailTextLabel?.text = die_simpsons[indexPath.row].tätigkeit
+        cell.textLabel?.text = article[indexPath.row]
+        cell.detailTextLabel?.text = article[indexPath.row]
         
         let rightButton = MGSwipeButton(title: "Löschen", backgroundColor: UIColor.red, callback: { (sender: MGSwipeTableCell!) in
-            self.zeigeAlert(mitTitel: "Löschen")
+            self.deleteArticle(idx: indexPath.item)
+            self.tableView.deleteRows(at: [indexPath], with: .automatic)
             return true
         })
         
@@ -81,6 +76,11 @@ class ArtikelTVC: UITableViewController {
         return cell
     }
     
+    func deleteArticle(idx : Int){
+        article.remove(at: idx)
+        self.viewDidLoad()
+    }
+    
     func zeigeAlert(mitTitel : String){
         let alert =  UIAlertController(title: mitTitel, message: "", preferredStyle: .alert)
         let okAction = UIAlertAction(title: "OK", style: .default, handler: { action in })
@@ -92,9 +92,3 @@ class ArtikelTVC: UITableViewController {
     
     
 }
-
-struct Person {
-    let name : String
-    let tätigkeit : String
-}
-
