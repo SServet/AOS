@@ -17,14 +17,15 @@ class ArtikelTVC: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("ArtikelTVC: " + String(describing: article))
         tableView.rowHeight = 66
         
     }
     
+    // Uebpruefen ob der zurueck Button geklickt wurde
     override func willMove(toParentViewController parent: UIViewController?) {
         super.willMove(toParentViewController:parent)
         if parent == nil {
+            // Bearbeite Artikel zurueck senden
             delegate?.setArticle(_art: article)
         }
     }
@@ -42,19 +43,23 @@ class ArtikelTVC: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
+        // Eine Cell anlegen
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! MGSwipeTableCell
         
+        // Text der Tabelle setzen, Text wird aus den mitgeliferten Array aus Artikeln genommen
         cell.textLabel?.text = article[indexPath.row]
-        cell.detailTextLabel?.text = article[indexPath.row]
+        //cell.detailTextLabel?.text = article[indexPath.row]
         
+        // Einen Swipebutton anlegen der von rechtes kommt
         let rightButton = MGSwipeButton(title: "Löschen", backgroundColor: UIColor.red, callback: { (sender: MGSwipeTableCell!) in
             self.deleteArticle(idx: indexPath.item)
             self.tableView.deleteRows(at: [indexPath], with: .automatic)
             return true
         })
         
+        // Einen Swipebutton anlegen der von links kommt
         let leftButton = MGSwipeButton(title: "Fav", backgroundColor: UIColor(red: 0.2471, green: 0.7647, blue: 0.502, alpha: 1) , callback: { (sender: MGSwipeTableCell!) in
-            self.zeigeAlert(mitTitel: "Fav")
+            //self.tableView.rows
             return true
         })
         let left2Button = MGSwipeButton(title: "Check", backgroundColor: UIColor.orange, callback: { (sender: MGSwipeTableCell!) in

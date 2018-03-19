@@ -238,10 +238,12 @@ class addArbeitsscheinVC: FormViewController, ArticleDelegate{
             }
     }
     
+    // passing data between views
     func setArticle(_art: [String]){
         artikel = _art
     }
     
+    // Daten von der Form lesen,
     func buttontapped(cell: ButtonCellOf<String>, row: ButtonRow){
         let kid = getID(_tag: "Kunde")
         let ttid = getID(_tag: "Termintyp")
@@ -262,6 +264,7 @@ class addArbeitsscheinVC: FormViewController, ArticleDelegate{
         }
     }
     
+    // Artikel hinzufuegenß
     func addArticle(cell: ButtonCellOf<String>, row: ButtonRow){
         let id = getID(_tag: "Artikel")
         let descr = getString(_tag: "Artikel")
@@ -270,14 +273,15 @@ class addArbeitsscheinVC: FormViewController, ArticleDelegate{
         
     }
     
+    // Artikel an die View ArtikelTVC senden um dort diese zu loesen/aendern
     func checkArticle(cell: ButtonCellOf<String>, row: ButtonRow){
-        print(artikel)
         let atvc = self.storyboard?.instantiateViewController(withIdentifier: "ArtikelTVC") as! ArtikelTVC
         atvc.article = artikel
         atvc.delegate = self
         self.navigationController?.pushViewController(atvc, animated: true)
     }
     
+    // ID von einer Row von der Form lesen
     func getID(_tag: String) -> Int{
         let id: BaseRow? = form.rowBy(tag: _tag)
         let val = id?.baseValue
@@ -298,6 +302,7 @@ class addArbeitsscheinVC: FormViewController, ArticleDelegate{
         return -1;
     }
     
+    // Datum von Form lesen
     func getDate(_tag: String)->Date{
         let a = _tag.components(separatedBy: "(")
         if a.contains("nil") == false{
@@ -312,9 +317,13 @@ class addArbeitsscheinVC: FormViewController, ArticleDelegate{
         return Date(timeIntervalSinceNow: 0)
     }
     
+    // Text von der Form lesen
     func getString(_tag: String) -> String{
         let row: TextRow? = form.rowBy(tag: _tag)
         var a = [String]()
+        
+        
+        // Vordefinierte Beschreibungen zu der Beschreibung einfuegen
         if(row?.value != nil){
             if(form.rowBy(tag: "Vordefinierte Beschreibung")?.baseValue != nil){
                 let arr = String(describing: form.rowBy(tag: "Vordefinierte Beschreibung")?.baseValue).components(separatedBy: "(")
@@ -329,6 +338,8 @@ class addArbeitsscheinVC: FormViewController, ArticleDelegate{
             }
             return (row?.value) as! String
         }
+        
+        // Vorderfnierte Beschreibung als Beschreibung nehmen
         if(form.rowBy(tag: "Vordefinierte Beschreibung")?.baseValue != nil){
             let arr = String(describing: form.rowBy(tag: "Vordefinierte Beschreibung")?.baseValue).components(separatedBy: "(")
             let arr1 = arr[2].components(separatedBy: "[")
@@ -341,6 +352,7 @@ class addArbeitsscheinVC: FormViewController, ArticleDelegate{
             return String(describing: a)
         }
         
+        // Text von ausgewaehlte Artikel nehmen
         if(form.rowBy(tag: "Artikel")?.baseValue != nil){
             let arr = String(describing: form.rowBy(tag: "Artikel")?.baseValue).characters.split(separator: "(", maxSplits: 1).map{String($0)}
             let arr1 = arr[1].substring(to: arr[1].index(before: arr[1].endIndex)).components(separatedBy: ".")
@@ -350,6 +362,7 @@ class addArbeitsscheinVC: FormViewController, ArticleDelegate{
         return ""
     }
     
+    // Ueberpruefen ob ein Kunde, Terminttyp oder eine Taetigkeitsart ausgewaehlt wurde
     func checkID(id1: Int, id2: Int, id3: Int) -> Bool{
         if(id1 == -1){
             popup(title_: "Warnung", message_: "Es wurde kein Kunde ausgewählt!")
@@ -364,12 +377,14 @@ class addArbeitsscheinVC: FormViewController, ArticleDelegate{
         return true
     }
     
+    // Ein popup mit einem mitgegebenen Text zeigen
     func popup(title_: String, message_: String){
         let alert = UIAlertController(title: title_ , message: message_, preferredStyle: UIAlertControllerStyle.alert)
         alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
         self.present(alert, animated: true, completion: nil)
     }
     
+    // Arbeitsschein anlegen
     func addAS(mid: Int, kid: Int, aid: Int, ttid: Int, tid: Int, descr: String, dfrom: Date, kgrund: String, kzeit: Int){
         let AS: Parameters=[
             "mid": mid,
@@ -389,5 +404,3 @@ class addArbeitsscheinVC: FormViewController, ArticleDelegate{
         
     }
 }
-
-
