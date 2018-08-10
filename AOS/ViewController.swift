@@ -40,10 +40,8 @@ class ViewController: UIViewController, UITextFieldDelegate {
             "email":Login_Mail_Input.text!,
             "password":Login_PW_Input.text!
         ]
-        
         Alamofire.request(URL_USER_LOGIN, method: .post, parameters: LoginRequest).responseJSON{
             response in
-            print(response)
             if let result = response.result.value{
                 
                 let jsonData = result as! NSDictionary
@@ -60,7 +58,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
                     //saving user values to defaults
                     self.defaultValues.set(userId, forKey: "userid")
                     self.defaultValues.set(userEmail, forKey: "useremail")
-                    //self.defaultValues.synchronize()
+                    self.defaultValues.synchronize()
                     //switching the screen
                     let menuViewController = self.storyboard?.instantiateViewController(withIdentifier: "MenuViewController") as! MenuViewController
                     self.navigationController?.pushViewController(menuViewController, animated: true)

@@ -12,6 +12,12 @@
 		72AEFE101FDE95490085FDCA /* Eureka.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 72AEFE0E1FDE95490085FDCA /* Eureka.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		72AEFE131FDE95DD0085FDCA /* addArbeitsscheinVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72AEFE121FDE95DD0085FDCA /* addArbeitsscheinVC.swift */; };
 		72FBCF3A200CA66100CCADB7 /* addTicketVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72FBCF39200CA66100CCADB7 /* addTicketVC.swift */; };
+		F90CD105210F07E000E5C6C1 /* OffeneASVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F90CD104210F07E000E5C6C1 /* OffeneASVC.swift */; };
+		F90CD1092112E9E000E5C6C1 /* CollapsibleTableSectionViewController.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F90CD1082112E9E000E5C6C1 /* CollapsibleTableSectionViewController.framework */; };
+		F90CD10A2112E9E600E5C6C1 /* CollapsibleTableSectionViewController.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F90CD1082112E9E000E5C6C1 /* CollapsibleTableSectionViewController.framework */; };
+		F90CD10B2112E9E600E5C6C1 /* CollapsibleTableSectionViewController.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F90CD1082112E9E000E5C6C1 /* CollapsibleTableSectionViewController.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		F90CD1142113040B00E5C6C1 /* ASIDDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F90CD1132113040B00E5C6C1 /* ASIDDelegate.swift */; };
+		F90CD1162113092D00E5C6C1 /* ASEditVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F90CD1152113092D00E5C6C1 /* ASEditVC.swift */; };
 		F9136AC1201F1C0C00F37485 /* addProjektVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9136AC0201F1C0C00F37485 /* addProjektVC.swift */; };
 		F9136AC3201F1E8300F37485 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9136AC2201F1E8300F37485 /* Alamofire.framework */; };
 		F9136AC5201F1EE600F37485 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9136AC4201F1EE600F37485 /* MenuViewController.swift */; };
@@ -29,6 +35,8 @@
 		F93D9F4F20569D5E006B8DB9 /* ArtikelTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F93D9F4E20569D5E006B8DB9 /* ArtikelTVC.swift */; };
 		F93D9F51205C550D006B8DB9 /* ArticleDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F93D9F50205C550D006B8DB9 /* ArticleDelegate.swift */; };
 		F949A1241F953DF300641596 /* rz_logo.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F949A1231F953DF300641596 /* rz_logo.jpg */; };
+		F95A1261211D6A2B00A3BEE3 /* offeneTicketVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F95A1260211D6A2B00A3BEE3 /* offeneTicketVC.swift */; };
+		F95A1263211D6D9A00A3BEE3 /* offeneProjectsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F95A1262211D6D9A00A3BEE3 /* offeneProjectsVC.swift */; };
 		F9807B3B1F97DCEC001BD351 /* rz_logo.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F9807B3A1F97DCEB001BD351 /* rz_logo.jpg */; };
 /* End PBXBuildFile section */
 
@@ -40,6 +48,7 @@
 			dstSubfolderSpec = 10;
 			files = (
 				72AEFE101FDE95490085FDCA /* Eureka.framework in Embed Frameworks */,
+				F90CD10B2112E9E600E5C6C1 /* CollapsibleTableSectionViewController.framework in Embed Frameworks */,
 				F93D9F4920567A8E006B8DB9 /* MGSwipeTableCell.framework in Embed Frameworks */,
 				F9136AC7201F1FEF00F37485 /* Alamofire.framework in Embed Frameworks */,
 			);
@@ -53,6 +62,11 @@
 		72AEFE0E1FDE95490085FDCA /* Eureka.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Eureka.framework; path = Carthage/Build/iOS/Eureka.framework; sourceTree = "<group>"; };
 		72AEFE121FDE95DD0085FDCA /* addArbeitsscheinVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = addArbeitsscheinVC.swift; sourceTree = "<group>"; };
 		72FBCF39200CA66100CCADB7 /* addTicketVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = addTicketVC.swift; sourceTree = "<group>"; };
+		F90CD104210F07E000E5C6C1 /* OffeneASVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OffeneASVC.swift; sourceTree = "<group>"; };
+		F90CD1062112E9CE00E5C6C1 /* CollapsibleTableSectionViewController.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = CollapsibleTableSectionViewController.framework.dSYM; path = Carthage/Build/iOS/CollapsibleTableSectionViewController.framework.dSYM; sourceTree = "<group>"; };
+		F90CD1082112E9E000E5C6C1 /* CollapsibleTableSectionViewController.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CollapsibleTableSectionViewController.framework; path = Carthage/Build/iOS/CollapsibleTableSectionViewController.framework; sourceTree = "<group>"; };
+		F90CD1132113040B00E5C6C1 /* ASIDDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ASIDDelegate.swift; sourceTree = "<group>"; };
+		F90CD1152113092D00E5C6C1 /* ASEditVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ASEditVC.swift; sourceTree = "<group>"; };
 		F9136AC0201F1C0C00F37485 /* addProjektVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = addProjektVC.swift; sourceTree = "<group>"; };
 		F9136AC2201F1E8300F37485 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
 		F9136AC4201F1EE600F37485 /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
@@ -69,6 +83,8 @@
 		F93D9F4E20569D5E006B8DB9 /* ArtikelTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtikelTVC.swift; sourceTree = "<group>"; };
 		F93D9F50205C550D006B8DB9 /* ArticleDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleDelegate.swift; sourceTree = "<group>"; };
 		F949A1231F953DF300641596 /* rz_logo.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = rz_logo.jpg; sourceTree = "<group>"; };
+		F95A1260211D6A2B00A3BEE3 /* offeneTicketVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = offeneTicketVC.swift; sourceTree = "<group>"; };
+		F95A1262211D6D9A00A3BEE3 /* offeneProjectsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = offeneProjectsVC.swift; sourceTree = "<group>"; };
 		F9807B3A1F97DCEB001BD351 /* rz_logo.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = rz_logo.jpg; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -77,6 +93,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F90CD1092112E9E000E5C6C1 /* CollapsibleTableSectionViewController.framework in Frameworks */,
+				F90CD10A2112E9E600E5C6C1 /* CollapsibleTableSectionViewController.framework in Frameworks */,
 				F93D9F4720567A86006B8DB9 /* MGSwipeTableCell.framework in Frameworks */,
 				F9136AC9201F20B900F37485 /* LocalAuthentication.framework in Frameworks */,
 				F9136AC3201F1E8300F37485 /* Alamofire.framework in Frameworks */,
@@ -92,6 +110,8 @@
 		F9136ABF201F1BC300F37485 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F90CD1082112E9E000E5C6C1 /* CollapsibleTableSectionViewController.framework */,
+				F90CD1062112E9CE00E5C6C1 /* CollapsibleTableSectionViewController.framework.dSYM */,
 				F93D9F4620567A86006B8DB9 /* MGSwipeTableCell.framework */,
 				F9136AC8201F20B900F37485 /* LocalAuthentication.framework */,
 				F9136AC2201F1E8300F37485 /* Alamofire.framework */,
@@ -136,6 +156,11 @@
 				F9136AC4201F1EE600F37485 /* MenuViewController.swift */,
 				F93D9F4A20568367006B8DB9 /* AOS-Bridging-Header.h */,
 				F93D9F50205C550D006B8DB9 /* ArticleDelegate.swift */,
+				F90CD104210F07E000E5C6C1 /* OffeneASVC.swift */,
+				F90CD1132113040B00E5C6C1 /* ASIDDelegate.swift */,
+				F90CD1152113092D00E5C6C1 /* ASEditVC.swift */,
+				F95A1260211D6A2B00A3BEE3 /* offeneTicketVC.swift */,
+				F95A1262211D6D9A00A3BEE3 /* offeneProjectsVC.swift */,
 			);
 			path = AOS;
 			sourceTree = "<group>";
@@ -216,14 +241,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F90CD1162113092D00E5C6C1 /* ASEditVC.swift in Sources */,
 				72659CF5200372280054F96D /* SearchPushRow.swift in Sources */,
+				F90CD105210F07E000E5C6C1 /* OffeneASVC.swift in Sources */,
+				F90CD1142113040B00E5C6C1 /* ASIDDelegate.swift in Sources */,
 				F9136AC1201F1C0C00F37485 /* addProjektVC.swift in Sources */,
+				F95A1263211D6D9A00A3BEE3 /* offeneProjectsVC.swift in Sources */,
 				72FBCF3A200CA66100CCADB7 /* addTicketVC.swift in Sources */,
 				F93D9F51205C550D006B8DB9 /* ArticleDelegate.swift in Sources */,
 				F9136AC5201F1EE600F37485 /* MenuViewController.swift in Sources */,
 				F92C557C1F94C06E00476CFB /* ViewController.swift in Sources */,
 				F93D9F4F20569D5E006B8DB9 /* ArtikelTVC.swift in Sources */,
 				F92C557A1F94C06E00476CFB /* AppDelegate.swift in Sources */,
+				F95A1261211D6A2B00A3BEE3 /* offeneTicketVC.swift in Sources */,
 				72AEFE131FDE95DD0085FDCA /* addArbeitsscheinVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
