@@ -270,35 +270,36 @@ class addArbeitsscheinVC: FormViewController, ArticleDelegate{
         var tTo = getZeit(_tag: "Zeit bis")
 
         
-        var arr = dfrom.components(separatedBy: "/")
-        var month = arr[0]
+        var arr = dfrom.components(separatedBy: ".")
+        print(arr)
+        var month = arr[1]
         if(Int(month)! < 10){
-            if(Int(arr[1])! < 10){
-                dfrom = "20" + arr[2] + "-0" + month + "-0" + arr[1]
+            if(Int(arr[0])! < 10){
+                dfrom = "20" + arr[2] + "-0" + month + "-0" + arr[0]
             }else{
-                dfrom = "20" + arr[2] + "-0" + month + "-" + arr[1]
+                dfrom = "20" + arr[2] + "-0" + month + "-" + arr[0]
             }
         }else{
-            if(Int(arr[1])! < 10){
-                dfrom = "20" + arr[2] + "-" + month + "-0" + arr[1]
+            if(Int(arr[0])! < 10){
+                dfrom = "20" + arr[2] + "-" + month + "-0" + arr[0]
             }else{
-                dfrom = "20" + arr[2] + "-" + month + "-" + arr[1]
+                dfrom = "20" + arr[2] + "-" + month + "-" + arr[0]
             }
         }
         
-        arr = dTo.components(separatedBy: "/")
-        month = arr[0]
+        arr = dTo.components(separatedBy: ".")
+        month = arr[1]
         if(Int(month)! < 10){
-            if(Int(arr[1])! < 10){
-                dTo = "20" + arr[2] + "-0" + month + "-0" + arr[1]
+            if(Int(arr[0])! < 10){
+                dTo = "20" + arr[2] + "-0" + month + "-0" + arr[0]
             }else{
-                dTo = "20" + arr[2] + "-0" + month + "-" + arr[1]
+                dTo = "20" + arr[2] + "-0" + month + "-" + arr[0]
             }
         }else{
-            if(Int(arr[1])! < 10){
-                dTo = "20" + arr[2] + "-" + month + "-0" + arr[1]
+            if(Int(arr[0])! < 10){
+                dTo = "20" + arr[2] + "-" + month + "-0" + arr[0]
             }else{
-                dTo = "20" + arr[2] + "-" + month + "-" + arr[1]
+                dTo = "20" + arr[2] + "-" + month + "-" + arr[0]
             }
         }
         
@@ -513,7 +514,31 @@ class addArbeitsscheinVC: FormViewController, ArticleDelegate{
         if(!asClose){
             Alamofire.request(URL_POST_AS, method: .post, parameters: AS).responseJSON{
                 response in
-                print(response)
+                if(self.artikel.count > 0){
+                    var AS_Artikel: Parameters = [:]
+                    for(index, element) in self.artikel.enumerated(){
+                        let arr = element.components(separatedBy: ";")
+                        let idx = arr.index(of: "Stk.")
+                        let idx2 = arr.index(of: "Std.")
+                        if(idx != nil){
+                            AS_Artikel = [
+                                "aid": arr[0],
+                                "unit": arr[idx!],
+                                "count": arr[2]
+                            ]
+                        }else if(idx2 != nil){
+                            AS_Artikel = [
+                                "aid": arr[0],
+                                "unit": arr[idx2!],
+                                "count": arr[2]
+                            ]
+                        }
+                        Alamofire.request(self.URL_POST_AS_Artikel, method: .post, parameters: AS_Artikel).responseJSON{
+                            response in
+                            self.popup(title_: "Arbeitsschein", message_: "Die Artikel wurden dem Arbeitsschein erfolgreich hinzugefügt!")
+                        }
+                    }
+                }
                 self.popup(title_: "Arbeitsschein", message_: "Arbeitsschein erfolgreich hinzugefügt!")
             }
         }else{
@@ -533,37 +558,33 @@ class addArbeitsscheinVC: FormViewController, ArticleDelegate{
             
             Alamofire.request(URL_POST_AS_CLOSED, method: .post, parameters: ASClose).responseJSON{
                 response in
+                if(self.artikel.count > 0){
+                    var AS_Artikel: Parameters = [:]
+                    for(index, element) in self.artikel.enumerated(){
+                        let arr = element.components(separatedBy: ";")
+                        let idx = arr.index(of: "Stk.")
+                        let idx2 = arr.index(of: "Std.")
+                        if(idx != nil){
+                            AS_Artikel = [
+                                "aid": arr[0],
+                                "unit": arr[idx!],
+                                "count": arr[2]
+                            ]
+                        }else if(idx2 != nil){
+                            AS_Artikel = [
+                                "aid": arr[0],
+                                "unit": arr[idx2!],
+                                "count": arr[2]
+                            ]
+                        }
+                        Alamofire.request(self.URL_POST_AS_Artikel, method: .post, parameters: AS_Artikel).responseJSON{
+                            response in
+                            self.popup(title_: "Arbeitsschein", message_: "Die Artikel wurden dem Arbeitsschein erfolgreich hinzugefügt!")
+                        }
+                    }
+                }
                 self.popup(title_: "Arbeitsschein", message_: "Arbeitsschein erfolgreich hinzugefügt!")
             }
-            
         }
-        
-        
-        if(artikel.count > 0){
-            var AS_Artikel: Parameters = [:]
-            for(index, element) in artikel.enumerated(){
-                let arr = element.components(separatedBy: ";")
-                let idx = arr.index(of: "Stk.")
-                let idx2 = arr.index(of: "Std.")
-                if(idx != nil){
-                    AS_Artikel = [
-                        "aid": arr[0],
-                        "unit": arr[idx!],
-                        "count": arr[2]
-                    ]
-                }else if(idx2 != nil){
-                    AS_Artikel = [
-                        "aid": arr[0],
-                        "unit": arr[idx2!],
-                        "count": arr[2]
-                    ]
-                }
-                Alamofire.request(URL_POST_AS_Artikel, method: .post, parameters: AS_Artikel).responseJSON{
-                    response in
-                    self.popup(title_: "Arbeitsschein", message_: "Die Artikel wurden dem Arbeitsschein erfolgreich hinzugefügt!")
-                }
-            }
-        }
-        
     }
 }

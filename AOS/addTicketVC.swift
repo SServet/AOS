@@ -321,35 +321,32 @@ class addTicketVC: FormViewController, ArticleDelegate {
         
         Alamofire.request(URL_POST_TICKET, method: .post, parameters: Ticket).responseJSON{
             response in
-            //print(response)
-            self.popup(title_: "Ticket", message_: "Ticket erfolgreich hinzugefügt!")
-        }
-        
-        
-        if(artikel.count > 0){
-            var Ticket_Artikel: Parameters = [:]
-            for(index, element) in artikel.enumerated(){
-                let arr = element.components(separatedBy: ";")
-                let idx = arr.index(of: "Stk.")
-                let idx2 = arr.index(of: "Std.")
-                if(idx != nil){
-                    Ticket_Artikel = [
-                        "aid": arr[0],
-                        "unit": arr[idx!],
-                        "count": arr[2]
-                    ]
-                }else if(idx2 != nil){
-                    Ticket_Artikel = [
-                        "aid": arr[0],
-                        "unit": arr[idx2!],
-                        "count": arr[2]
-                    ]
-                }
-                Alamofire.request(URL_POST_TICKET_Artikel, method: .post, parameters: Ticket_Artikel).responseJSON{
-                    response in
-                    self.popup(title_: "Ticket", message_: "Die Artikel wurden dem Ticket erfolgreich hinzugefügt!")
+            if(self.artikel.count > 0){
+                var Ticket_Artikel: Parameters = [:]
+                for(index, element) in self.artikel.enumerated(){
+                    let arr = element.components(separatedBy: ";")
+                    let idx = arr.index(of: "Stk.")
+                    let idx2 = arr.index(of: "Std.")
+                    if(idx != nil){
+                        Ticket_Artikel = [
+                            "aid": arr[0],
+                            "unit": arr[idx!],
+                            "count": arr[2]
+                        ]
+                    }else if(idx2 != nil){
+                        Ticket_Artikel = [
+                            "aid": arr[0],
+                            "unit": arr[idx2!],
+                            "count": arr[2]
+                        ]
+                    }
+                    Alamofire.request(self.URL_POST_TICKET_Artikel, method: .post, parameters: Ticket_Artikel).responseJSON{
+                        response in
+                        self.popup(title_: "Ticket", message_: "Die Artikel wurden dem Ticket erfolgreich hinzugefügt!")
+                    }
                 }
             }
+            self.popup(title_: "Ticket", message_: "Ticket erfolgreich hinzugefügt!")
         }
     }
     
@@ -376,6 +373,4 @@ class addTicketVC: FormViewController, ArticleDelegate {
         }
         return true
     }
-    
-
 }
