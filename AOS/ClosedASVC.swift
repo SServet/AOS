@@ -24,7 +24,7 @@ class ClosedASVC: UITableViewController, ASIDDelegate{
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.rowHeight = 66
-        self.tableView.register(MGSwipeTableCell.self, forCellReuseIdentifier: "MG")
+        self.tableView.register(MGSwipeTableCell.self, forCellReuseIdentifier: "Cell")
         self.title = "Abgeschlossene Arbeitsscheine"
         loadClosedAS()
     }
@@ -40,12 +40,11 @@ class ClosedASVC: UITableViewController, ASIDDelegate{
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "MG", for: indexPath) as! MGSwipeTableCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") as! MGSwipeTableCell
         
         if(self.cAS.count > 0 && indexPath.row < self.cAS.count){
             var arr = self.cAS[indexPath.row].split(separator: ";")
-            cell.textLabel?.text = String(arr[0]) + ". " + String(arr[1]) + " "  + String(arr[2])
-            cell.detailTextLabel?.text = String(arr[2])
+            cell.textLabel?.text = arr[0] + ". " + arr[2] + " " + arr[1]
         }
 
         return cell;
@@ -77,7 +76,7 @@ class ClosedASVC: UITableViewController, ASIDDelegate{
                     
                     for i in 0..<cas.count{
                         var a = asid[i] as! String + ";"
-                        a += (descr[i] as! String).replacingOccurrences(of: "\n\r", with: "A M K") + ";"
+                        a += (descr[i] as! String) + ";"
                         a += company[i] as! String + ";"
                         a += datefrom[i] as! String
                         self.cAS.append(a)

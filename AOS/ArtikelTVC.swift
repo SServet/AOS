@@ -47,11 +47,10 @@ class ArtikelTVC: UITableViewController {
         
         // Text der Tabelle setzen, Text wird aus den mitgeliferten Array aus Artikeln genommen
         var arr = article[indexPath.row].split(separator: ";")
-        
-        var id = arr[0]
-        var descr = arr[1]
-        var anz = arr[2]
-        var einheit = arr[3]
+        let id = arr[0]
+        let descr = arr[1]
+        let anz = arr[2]
+        let einheit = arr[3]
         
         cell.textLabel?.text = String(id)
         
@@ -109,7 +108,7 @@ class ArtikelTVC: UITableViewController {
     }
     
     func editArticle(idx : Int, id : String, descr: String, anz: String, einheit: String){
-        self.article[idx] = id + "," + descr + "," + anz + ", " + einheit
+        self.article[idx] = id + ";" + descr + ";" + anz + ";" + einheit
     }
     
     func zeigeAlert(mitTitel : String){

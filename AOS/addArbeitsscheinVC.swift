@@ -27,7 +27,7 @@ extension SearchItemModel: SearchItem {
 }
 extension SearchItemModel: Equatable {
     static func == (lhs: SearchItemModel, rhs: SearchItemModel) -> Bool {
-        return lhs.id == rhs.id
+        return lhs.description == rhs.description
     }
 }
 extension SearchItemModel: CustomStringConvertible {

@@ -42,6 +42,8 @@ open class _SearchSelectorViewController<Row: SelectableRowType, OptionsRow: Opt
         return currentOptions.count
     }
     
+    
+    
     open override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let option = currentOptions[indexPath.row]
         option.updateCell()
@@ -52,10 +54,10 @@ open class _SearchSelectorViewController<Row: SelectableRowType, OptionsRow: Opt
         return nil
     }
     
-    //open override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    //    currentOptions[indexPath.row].didSelect()
-    //    tableView.deselectRow(at: indexPath, animated: true)
-    //}
+    open override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        currentOptions[indexPath.row].didSelect()
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
 }
 
 open class SearchSelectorViewController<OptionsRow: OptionsProviderRow>: _SearchSelectorViewController<ListCheckRow<OptionsRow.OptionsProviderType.Option>, OptionsRow> where OptionsRow.OptionsProviderType.Option: SearchItem {

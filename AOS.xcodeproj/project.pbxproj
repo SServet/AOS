@@ -8,8 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		72659CF5200372280054F96D /* SearchPushRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72659CF4200372280054F96D /* SearchPushRow.swift */; };
-		72AEFE0F1FDE95490085FDCA /* Eureka.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 72AEFE0E1FDE95490085FDCA /* Eureka.framework */; };
-		72AEFE101FDE95490085FDCA /* Eureka.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 72AEFE0E1FDE95490085FDCA /* Eureka.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		72AEFE131FDE95DD0085FDCA /* addArbeitsscheinVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72AEFE121FDE95DD0085FDCA /* addArbeitsscheinVC.swift */; };
 		72FBCF3A200CA66100CCADB7 /* addTicketVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72FBCF39200CA66100CCADB7 /* addTicketVC.swift */; };
 		F90CD1092112E9E000E5C6C1 /* CollapsibleTableSectionViewController.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F90CD1082112E9E000E5C6C1 /* CollapsibleTableSectionViewController.framework */; };
@@ -35,12 +33,18 @@
 		F93D9F4F20569D5E006B8DB9 /* ArtikelTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F93D9F4E20569D5E006B8DB9 /* ArtikelTVC.swift */; };
 		F93D9F51205C550D006B8DB9 /* ArticleDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F93D9F50205C550D006B8DB9 /* ArticleDelegate.swift */; };
 		F949A1241F953DF300641596 /* rz_logo.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F949A1231F953DF300641596 /* rz_logo.jpg */; };
-		F95A1261211D6A2B00A3BEE3 /* offeneTicketVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F95A1260211D6A2B00A3BEE3 /* offeneTicketVC.swift */; };
 		F95A1263211D6D9A00A3BEE3 /* offeneProjectsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F95A1262211D6D9A00A3BEE3 /* offeneProjectsVC.swift */; };
 		F95A126521357CC300A3BEE3 /* OffeneASVCEdit.swift in Sources */ = {isa = PBXBuildFile; fileRef = F95A126421357CC200A3BEE3 /* OffeneASVCEdit.swift */; };
 		F95A126921357D6A00A3BEE3 /* ClosedASVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F95A126821357D6A00A3BEE3 /* ClosedASVC.swift */; };
 		F95A126D2136E46700A3BEE3 /* ClosedProjectVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F95A126C2136E46700A3BEE3 /* ClosedProjectVC.swift */; };
 		F9807B3B1F97DCEC001BD351 /* rz_logo.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F9807B3A1F97DCEB001BD351 /* rz_logo.jpg */; };
+		F9ADCCC6213D73F900BBEE21 /* PIDDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9ADCCC5213D73F900BBEE21 /* PIDDelegate.swift */; };
+		F9ADCCC8213D7BB300BBEE21 /* ProjectEditVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9ADCCC7213D7BB300BBEE21 /* ProjectEditVC.swift */; };
+		F9ADCCCA2149596200BBEE21 /* TIDDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9ADCCC92149596200BBEE21 /* TIDDelegate.swift */; };
+		F9ADCCCE21496D4800BBEE21 /* Eureka.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9ADCCCD21496D4700BBEE21 /* Eureka.framework */; };
+		F9ADCCCF21496D4800BBEE21 /* Eureka.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F9ADCCCD21496D4700BBEE21 /* Eureka.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		F9ADCCD1214A4AC600BBEE21 /* offeneTicketVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9ADCCD0214A4AC600BBEE21 /* offeneTicketVC.swift */; };
+		F9ADCCD3214A4C6D00BBEE21 /* TicketEditVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9ADCCD2214A4C6D00BBEE21 /* TicketEditVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -50,8 +54,8 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				72AEFE101FDE95490085FDCA /* Eureka.framework in Embed Frameworks */,
 				F90CD10B2112E9E600E5C6C1 /* CollapsibleTableSectionViewController.framework in Embed Frameworks */,
+				F9ADCCCF21496D4800BBEE21 /* Eureka.framework in Embed Frameworks */,
 				F93D9F4920567A8E006B8DB9 /* MGSwipeTableCell.framework in Embed Frameworks */,
 				F9136AC7201F1FEF00F37485 /* Alamofire.framework in Embed Frameworks */,
 			);
@@ -62,7 +66,6 @@
 
 /* Begin PBXFileReference section */
 		72659CF4200372280054F96D /* SearchPushRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchPushRow.swift; sourceTree = "<group>"; };
-		72AEFE0E1FDE95490085FDCA /* Eureka.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Eureka.framework; path = Carthage/Build/iOS/Eureka.framework; sourceTree = "<group>"; };
 		72AEFE121FDE95DD0085FDCA /* addArbeitsscheinVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = addArbeitsscheinVC.swift; sourceTree = "<group>"; };
 		72FBCF39200CA66100CCADB7 /* addTicketVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = addTicketVC.swift; sourceTree = "<group>"; };
 		F90CD1062112E9CE00E5C6C1 /* CollapsibleTableSectionViewController.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = CollapsibleTableSectionViewController.framework.dSYM; path = Carthage/Build/iOS/CollapsibleTableSectionViewController.framework.dSYM; sourceTree = "<group>"; };
@@ -86,12 +89,17 @@
 		F93D9F4E20569D5E006B8DB9 /* ArtikelTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtikelTVC.swift; sourceTree = "<group>"; };
 		F93D9F50205C550D006B8DB9 /* ArticleDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleDelegate.swift; sourceTree = "<group>"; };
 		F949A1231F953DF300641596 /* rz_logo.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = rz_logo.jpg; sourceTree = "<group>"; };
-		F95A1260211D6A2B00A3BEE3 /* offeneTicketVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = offeneTicketVC.swift; sourceTree = "<group>"; };
 		F95A1262211D6D9A00A3BEE3 /* offeneProjectsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = offeneProjectsVC.swift; sourceTree = "<group>"; };
 		F95A126421357CC200A3BEE3 /* OffeneASVCEdit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OffeneASVCEdit.swift; sourceTree = "<group>"; };
 		F95A126821357D6A00A3BEE3 /* ClosedASVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClosedASVC.swift; sourceTree = "<group>"; };
 		F95A126C2136E46700A3BEE3 /* ClosedProjectVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClosedProjectVC.swift; sourceTree = "<group>"; };
 		F9807B3A1F97DCEB001BD351 /* rz_logo.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = rz_logo.jpg; sourceTree = "<group>"; };
+		F9ADCCC5213D73F900BBEE21 /* PIDDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PIDDelegate.swift; sourceTree = "<group>"; };
+		F9ADCCC7213D7BB300BBEE21 /* ProjectEditVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectEditVC.swift; sourceTree = "<group>"; };
+		F9ADCCC92149596200BBEE21 /* TIDDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TIDDelegate.swift; sourceTree = "<group>"; };
+		F9ADCCCD21496D4700BBEE21 /* Eureka.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Eureka.framework; path = Carthage/Build/iOS/Eureka.framework; sourceTree = "<group>"; };
+		F9ADCCD0214A4AC600BBEE21 /* offeneTicketVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = offeneTicketVC.swift; sourceTree = "<group>"; };
+		F9ADCCD2214A4C6D00BBEE21 /* TicketEditVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketEditVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,13 +108,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				F90CD1092112E9E000E5C6C1 /* CollapsibleTableSectionViewController.framework in Frameworks */,
+				F9ADCCCE21496D4800BBEE21 /* Eureka.framework in Frameworks */,
 				F90CD10A2112E9E600E5C6C1 /* CollapsibleTableSectionViewController.framework in Frameworks */,
 				F93D9F4720567A86006B8DB9 /* MGSwipeTableCell.framework in Frameworks */,
 				F9136AC9201F20B900F37485 /* LocalAuthentication.framework in Frameworks */,
 				F9136AC3201F1E8300F37485 /* Alamofire.framework in Frameworks */,
 				F9136AC6201F1FEF00F37485 /* Alamofire.framework in Frameworks */,
 				F93D9F4820567A8E006B8DB9 /* MGSwipeTableCell.framework in Frameworks */,
-				72AEFE0F1FDE95490085FDCA /* Eureka.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -128,7 +136,7 @@
 		F92C556D1F94C06E00476CFB = {
 			isa = PBXGroup;
 			children = (
-				72AEFE0E1FDE95490085FDCA /* Eureka.framework */,
+				F9ADCCCD21496D4700BBEE21 /* Eureka.framework */,
 				F92C55781F94C06E00476CFB /* AOS */,
 				F92C55771F94C06E00476CFB /* Products */,
 				F9136ABF201F1BC300F37485 /* Frameworks */,
@@ -165,11 +173,15 @@
 				F95A126421357CC200A3BEE3 /* OffeneASVCEdit.swift */,
 				F90CD1132113040B00E5C6C1 /* ASIDDelegate.swift */,
 				F90CD1152113092D00E5C6C1 /* ASEditVC.swift */,
-				F95A1260211D6A2B00A3BEE3 /* offeneTicketVC.swift */,
 				F95A1262211D6D9A00A3BEE3 /* offeneProjectsVC.swift */,
 				F95A126821357D6A00A3BEE3 /* ClosedASVC.swift */,
 				F95A126C2136E46700A3BEE3 /* ClosedProjectVC.swift */,
 				F9311E4D2137DC61002EEB0D /* ClosedTicketVC.swift */,
+				F9ADCCC5213D73F900BBEE21 /* PIDDelegate.swift */,
+				F9ADCCC7213D7BB300BBEE21 /* ProjectEditVC.swift */,
+				F9ADCCC92149596200BBEE21 /* TIDDelegate.swift */,
+				F9ADCCD0214A4AC600BBEE21 /* offeneTicketVC.swift */,
+				F9ADCCD2214A4C6D00BBEE21 /* TicketEditVC.swift */,
 			);
 			path = AOS;
 			sourceTree = "<group>";
@@ -255,7 +267,9 @@
 				72659CF5200372280054F96D /* SearchPushRow.swift in Sources */,
 				F95A126521357CC300A3BEE3 /* OffeneASVCEdit.swift in Sources */,
 				F9311E4E2137DC61002EEB0D /* ClosedTicketVC.swift in Sources */,
+				F9ADCCD1214A4AC600BBEE21 /* offeneTicketVC.swift in Sources */,
 				F90CD1142113040B00E5C6C1 /* ASIDDelegate.swift in Sources */,
+				F9ADCCC6213D73F900BBEE21 /* PIDDelegate.swift in Sources */,
 				F9136AC1201F1C0C00F37485 /* addProjektVC.swift in Sources */,
 				F95A1263211D6D9A00A3BEE3 /* offeneProjectsVC.swift in Sources */,
 				72FBCF3A200CA66100CCADB7 /* addTicketVC.swift in Sources */,
@@ -263,9 +277,11 @@
 				F9136AC5201F1EE600F37485 /* MenuViewController.swift in Sources */,
 				F95A126D2136E46700A3BEE3 /* ClosedProjectVC.swift in Sources */,
 				F92C557C1F94C06E00476CFB /* ViewController.swift in Sources */,
+				F9ADCCD3214A4C6D00BBEE21 /* TicketEditVC.swift in Sources */,
 				F93D9F4F20569D5E006B8DB9 /* ArtikelTVC.swift in Sources */,
 				F92C557A1F94C06E00476CFB /* AppDelegate.swift in Sources */,
-				F95A1261211D6A2B00A3BEE3 /* offeneTicketVC.swift in Sources */,
+				F9ADCCCA2149596200BBEE21 /* TIDDelegate.swift in Sources */,
+				F9ADCCC8213D7BB300BBEE21 /* ProjectEditVC.swift in Sources */,
 				72AEFE131FDE95DD0085FDCA /* addArbeitsscheinVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -385,6 +401,7 @@
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
@@ -394,7 +411,8 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -412,8 +430,11 @@
 				);
 				INFOPLIST_FILE = AOS/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LLVM_LTO = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = SSIT.AOS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_INSTALL_OBJC_HEADER = NO;
 				SWIFT_OBJC_BRIDGING_HEADER = "AOS/AOS-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
@@ -434,9 +455,12 @@
 				);
 				INFOPLIST_FILE = AOS/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LLVM_LTO = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = SSIT.AOS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_INSTALL_OBJC_HEADER = NO;
 				SWIFT_OBJC_BRIDGING_HEADER = "AOS/AOS-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

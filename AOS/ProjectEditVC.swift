@@ -1,9 +1,9 @@
 //
-//  addArbeitsscheinVC.swift
+//  ProjectEditVC.swift
 //  AOS
 //
-//  Created by Marko Peric on 11.12.17.
-//  Copyright © 2017 SSIT. All rights reserved.
+//  Created by SSIT on 03.09.18.
+//  Copyright © 2018 SSIT. All rights reserved.
 //
 
 import UIKit
@@ -11,20 +11,25 @@ import Eureka
 import Alamofire
 import Foundation
 
-class addProjektVC: FormViewController, ArticleDelegate {
+class ProjectEditVC: FormViewController, PIDDelegate, ArticleDelegate {
     
-    let URL_GET_KUNDEN = "http://aos.ssit.at/php/v1/kunden.php"
     let URL_GET_ARTIKEL = "http://aos.ssit.at/php/v1/artikel.php"
-    let URL_POST_PROJEKT = "http://aos.ssit.at/php/v1/insertProjekt.php"
-    let URL_POST_PROJEKT_Artikel = "http://aos.ssit.at/php/v1/artikelProjektInsert.php"
+    let URL_POST_PROJEKT = "http://aos.ssit.at/php/v1/addEditProject.php"
+    let URL_POST_PROJEKT_Artikel = "http://aos.ssit.at/php/v1/addArticleEditProject.php"
     
-    var artikel = [String]()
+    var pid = 0
+    var project = [String]()
+    var article = [String]()
+    var oldArticle = [String]()
+    var delegateArticle:ArticleDelegate?
+    var delegate: PIDDelegate?
+    
     var closed = false
     var settled = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        form +++ Section("Projekt hinzufügen")
+        form +++ Section("Projekt bearbeiten")
             
             <<< SwitchRow("Projekt abschliessen"){row in
                 row.title = "Projekt abgeschlossen"
@@ -35,7 +40,7 @@ class addProjektVC: FormViewController, ArticleDelegate {
                     }else{
                         self.closed = false
                     }
-            }
+                }
             
             <<< SwitchRow("Projekt abrechnen"){row in
                 row.title = "Projekt abgerechnet"
@@ -46,37 +51,17 @@ class addProjektVC: FormViewController, ArticleDelegate {
                     }else{
                         self.settled = false
                     }
-            }
-            
+                }
+        
             <<< SearchPushRow<SearchItemModel>("Kunde"){ row in
                 row.title = "Kunde"
-                Alamofire.request(URL_GET_KUNDEN, method: .get).responseJSON{
-                    response in
-                    if let result = response.result.value{
-                        let jsonData = result as! NSDictionary
-                        
-                        if(!(jsonData.value(forKey: "error") as! Bool)){
-                            
-                            let customer = jsonData.value(forKey: "customer") as! NSArray
-                            let companyname = customer.value(forKey: "companyname") as! NSArray
-                            let kid = customer.value(forKey: "kid") as! NSArray
-                            
-                            var sarr = [SearchItemModel]()
-                            for i in 0..<companyname.count{
-                                if companyname[i] is NSString{
-                                    var a = kid[i] as! NSString
-                                    var b:String = a as String
-                                    b += ". " + ((companyname[i] as! NSString) as String)
-                                    sarr.append(SearchItemModel.init(Int((kid[i] as! NSString).intValue), b))
-                                }
-                            }
-                            row.options = sarr
-                            row.selectorTitle = "Wähle Sie einen Kunden aus"
-                        }
-                    }
-                }
-                
+                var skundearr = [SearchItemModel]()
+                let k = self.project[0].split(separator: ";")
+                skundearr.append(SearchItemModel.init(0, String(k[0])))
+                row.value = skundearr[0]
+                row.baseCell.isUserInteractionEnabled = false
             }
+        
             <<< SearchPushRow<SearchItemModel>("Artikel"){ row in
                 row.title = "Artikel"
                 Alamofire.request(URL_GET_ARTIKEL, method: .get).responseJSON{
@@ -109,6 +94,7 @@ class addProjektVC: FormViewController, ArticleDelegate {
                     
                 }
             }
+        
             <<< PushRow<String>("Artikeleinheit"){row in
                 row.title = "Artikeleinheit auswählen"
                 row.options = ["Stk.", "Std."]
@@ -126,31 +112,63 @@ class addProjektVC: FormViewController, ArticleDelegate {
             }
             <<< TextRow("Bezeichnung") {
                 $0.title = "Bezeichnung"
+                $0.value = String(project[0].split(separator: ";")[1])
             }
             <<< TextRow("Beschreibung") {
                 $0.title = "Beschreibung"
+                $0.value = String(project[0].split(separator: ";")[2])
             }
             <<< PushRow<String>("Art"){
                 $0.title = "Projektart"
                 $0.options = ["Pauschal", "Aufwand"]
                 $0.selectorTitle = "Wähle eine Projektart"
-                $0.value = "Pauschal"
+                if(project[0].split(separator: ";").count >= 8){
+                    $0.value = String(project[0].split(separator: ";")[7])
+                }
             }
             <<< DecimalRow("Projektvolumen") {
                 $0.title = "Projektvolumen in Euro"
-                $0.value = 1
+                let arr = project[0].split(separator: ";")
+                $0.value = Double(project[0].split(separator: ";")[3])
             }
             <<< DateRow("BestellDate"){
                 $0.title = "Bestelldatum"
-                $0.value = Date()
+                var tmp = String(project[0].split(separator: ";")[4])
+                if(tmp == "0000-00-00"){
+                    $0.value = Date()
+                }else{
+                    let dateFormatter = DateFormatter()
+                    dateFormatter.dateFormat = "yyyy'-'MM'-'dd'"
+                    let date = dateFormatter.date(from: String(tmp))
+                    $0.value = date
+                    $0.reload()
+                }
             }
             <<< DateRow("Abgeschlossen Am"){
                 $0.title = "Abgeschlossen Am"
-                $0.value = Date()
+                var tmp = String(project[0].split(separator: ";")[5])
+                if(tmp == "0000-00-00"){
+                    $0.value = Date()
+                }else{
+                    let dateFormatter = DateFormatter()
+                    dateFormatter.dateFormat = "yyyy'-'MM'-'dd'"
+                    let date = dateFormatter.date(from: String(tmp))
+                    $0.value = date
+                    $0.reload()
+                }
             }
             <<< DateRow("Abgerechnet Am"){
                 $0.title = "Abgerechnet Am"
-                $0.value = Date()
+                var tmp = String(project[0].split(separator: ";")[6])
+                if(tmp == "0000-00-00"){
+                    $0.value = Date()
+                }else{
+                    let dateFormatter = DateFormatter()
+                    dateFormatter.dateFormat = "yyyy'-'MM'-'dd'"
+                    let date = dateFormatter.date(from: String(tmp))
+                    $0.value = date
+                    $0.reload()
+                }
             }
             <<< ButtonRow("Artikel prüfen"){
                 $0.title = "Artikel prüfen"
@@ -160,8 +178,29 @@ class addProjektVC: FormViewController, ArticleDelegate {
                 $0.title = "Senden"
                 $0.onCellSelection(buttontapped)
             }
+        
+    }
+    
+    func getID(_tag: String) -> Int{
+        let id: BaseRow? = form.rowBy(tag: _tag)
+        let val = id?.baseValue
+        if(val  != nil){
+            let a = String(describing: val)
+            let b = a.components(separatedBy: "(")
+            let c = b[1].components(separatedBy: "\"")
+            if c.count > 1{
+                let d = c[1].components(separatedBy: ".")
+                return Int(d[0]) as! Int
+            }
+            let d = c[0].components(separatedBy: ".")
+            if Int(d[0]) != nil{
+                return Int(d[0]) as! Int
+            }
+            return -1
         }
-    // Text von der Form lesen
+        return -1;
+    }
+    
     func getArtikel(_tag: String) -> String{
         let row: TextRow? = form.rowBy(tag: _tag)
         var a = ""
@@ -176,7 +215,7 @@ class addProjektVC: FormViewController, ArticleDelegate {
     }
     
     func setArticle(_art: [String]){
-        artikel = _art
+        article = _art
     }
     
     // Artikel hinzufuegenß
@@ -190,9 +229,9 @@ class addProjektVC: FormViewController, ArticleDelegate {
             let string2 = ";" + String(anz)
             if(einheit != ""){
                 let string3 = ";" + einheit
-                artikel.append(string1 + string2 + string3)
+                article.append(string1 + string2 + string3)
             }else{
-                artikel.append(string1 + string2)
+                article.append(string1 + string2)
             }
             popup(title_: "Artikel", message_: "Der von ihnen ausgewählter Artikel wurde erfolgreich hinzugefügt!")
         }else{
@@ -215,11 +254,11 @@ class addProjektVC: FormViewController, ArticleDelegate {
     }
     
     func checkArticle(cell: ButtonCellOf<String>, row: ButtonRow){
-        if(artikel.count < 1){
+        if(article.count < 1){
             popup(title_: "INFORMATION", message_: "Es sind keine Artikel vorhanden die überprüft werden können!")
         }else{
             let atvc = self.storyboard?.instantiateViewController(withIdentifier: "ArtikelTVC") as! ArtikelTVC
-            atvc.article = artikel
+            atvc.article = article
             atvc.delegate = self
             self.navigationController?.pushViewController(atvc, animated: true)
         }
@@ -229,36 +268,6 @@ class addProjektVC: FormViewController, ArticleDelegate {
         let alert = UIAlertController(title: title_ , message: message_, preferredStyle: UIAlertControllerStyle.alert)
         alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
         self.present(alert, animated: true, completion: nil)
-    }
-    
-    func getID(_tag: String) -> Int{
-        let id: BaseRow? = form.rowBy(tag: _tag)
-        let val = id?.baseValue
-        if(val  != nil){
-            let a = String(describing: val)
-            let b = a.components(separatedBy: "(")
-            let c = b[1].components(separatedBy: "\"")
-            if c.count > 1{
-                let d = c[1].components(separatedBy: ".")
-                return Int(d[0]) as! Int
-            }
-            let d = c[0].components(separatedBy: ".")
-            if Int(d[0]) != nil{
-                return Int(d[0]) as! Int
-            }
-            return -1
-        }
-        return -1;
-    }
-
-    func getDate(_tag: String)->String{
-        //print(_tag)
-        let a = _tag.components(separatedBy: "(")
-        if a.contains("nil") == false{
-            let b = a[1].components(separatedBy: " ")
-            return b[0]
-        }
-        return ""
     }
     
     func buttontapped(cell: ButtonCellOf<String>, row: ButtonRow){
@@ -277,7 +286,6 @@ class addProjektVC: FormViewController, ArticleDelegate {
             vol = vol as! Double
         }
         
-        //print(cdate + "\n" + finisehdOn + "\n" + settledOn)
         let defaultval = UserDefaults.standard
         if(checkKunde(kid: kid) && checkBezeichung(bez: label)){
             if let mid = defaultval.string(forKey: "userid"){
@@ -286,89 +294,13 @@ class addProjektVC: FormViewController, ArticleDelegate {
         }
     }
     
-    func addProjekt(mid: Int, kid: Int, label: String, descr: String, orderDate: String, finishedOn: String, settledOn: String, art: String, vol: Int){
-        var Projekt: Parameters = [:]
-        
-        if(settled && closed){
-            Projekt = [
-                "mid": mid,
-                "kid": kid,
-                "label": label,
-                "orderDate": orderDate,
-                "descr": descr,
-                "projectVolume": vol,
-                "finishedOn": finishedOn,
-                "settledOn": settledOn,
-                "type": art,
-                "closed": true
-            ]
-        }else if(!settled && closed){
-            Projekt = [
-                "mid": mid,
-                "kid": kid,
-                "label": label,
-                "orderDate": orderDate,
-                "descr": descr,
-                "projectVolume": vol,
-                "finishedOn": finishedOn,
-                "type": art,
-                "closed": false
-            ]
-        }else if(!settled && !closed){
-            Projekt = [
-                "mid": mid,
-                "kid": kid,
-                "label": label,
-                "orderDate": orderDate,
-                "descr": descr,
-                "projectVolume": vol,
-                "type": art,
-                "closed": false
-            ]
-        }else if(settled && !closed){
-            Projekt = [
-                "mid": mid,
-                "kid": kid,
-                "label": label,
-                "orderDate": orderDate,
-                "descr": descr,
-                "projectVolume": vol,
-                "settledOn": settledOn,
-                "type": art,
-                "closed": false
-            ]
+    func getDate(_tag: String)->String{
+        let a = _tag.components(separatedBy: "(")
+        if a.contains("nil") == false{
+            let b = a[1].components(separatedBy: " ")
+            return b[0]
         }
-        
-        Alamofire.request(URL_POST_PROJEKT, method: .post, parameters: Projekt).responseJSON{
-            response in
-            
-            if(self.artikel.count > 0){
-                var Projekt_Artikel: Parameters = [:]
-                for(index, element) in self.artikel.enumerated(){
-                    let arr = element.components(separatedBy: ";")
-                    let idx = arr.index(of: "Stk.")
-                    let idx2 = arr.index(of: "Std.")
-                    if(idx != nil){
-                        Projekt_Artikel = [
-                            "aid": arr[0],
-                            "unit": arr[idx!],
-                            "count": arr[2]
-                        ]
-                    }else if(idx2 != nil){
-                        Projekt_Artikel = [
-                            "aid": arr[0],
-                            "unit": arr[idx2!],
-                            "count": arr[2]
-                        ]
-                    }
-                    Alamofire.request(self.URL_POST_PROJEKT_Artikel, method: .post, parameters: Projekt_Artikel).responseJSON{
-                        response in
-                        self.popup(title_: "Ticket", message_: "Die Artikel wurden dem Ticket erfolgreich hinzugefügt!")
-                    }
-                }
-            }
-            self.popup(title_: "Projekt", message_: "Projekt erfolgreich hinzugefügt!")
-        }
+        return ""
     }
     
     func getString(_tag: String) -> String {
@@ -394,5 +326,103 @@ class addProjektVC: FormViewController, ArticleDelegate {
         }
         return true
     }
+    
+    func addProjekt(mid: Int, kid: Int, label: String, descr: String, orderDate: String, finishedOn: String, settledOn: String, art: String, vol: Int){
+        var Projekt: Parameters = [:]
+        
+        if(settled && closed){
+            Projekt = [
+                "pid": self.pid,
+                "label": label,
+                "orderDate": orderDate,
+                "descr": descr,
+                "projectVolume": vol,
+                "finishedOn": finishedOn,
+                "settledOn": settledOn,
+                "type": art,
+                "closed": true
+            ]
+        }else if(!settled && closed){
+            Projekt = [
+                "pid": self.pid,
+                "label": label,
+                "orderDate": orderDate,
+                "descr": descr,
+                "projectVolume": vol,
+                "finishedOn": finishedOn,
+                "type": art,
+                "closed": false
+            ]
+        }else if(!settled && !closed){
+            Projekt = [
+                "pid": self.pid,
+                "label": label,
+                "orderDate": orderDate,
+                "descr": descr,
+                "projectVolume": vol,
+                "type": art,
+                "closed": false
+            ]
+        }else if(settled && !closed){
+            Projekt = [
+                "pid": self.pid,
+                "label": label,
+                "orderDate": orderDate,
+                "descr": descr,
+                "projectVolume": vol,
+                "settledOn": settledOn,
+                "type": art,
+                "closed": false
+            ]
+        }
+        
+        Alamofire.request(URL_POST_PROJEKT, method: .post, parameters: Projekt).responseJSON{
+            response in
+            var Projekt_Artikel: Parameters = [:]
+            if(self.article.count > 0){
+                print(self.article)
+                for(index, element) in self.article.enumerated(){
+                    let arr = element.components(separatedBy: ";")
+                    print(arr)
+                    let idx = arr.index(of: "Stk.")
+                    print(idx)
+                    let idx2 = arr.index(of: "Std.")
+                    if(idx != nil){
+                        Projekt_Artikel = [
+                            "pid": self.pid,
+                            "aid": arr[0],
+                            "unit": arr[idx!],
+                            "count": arr[2]
+                        ]
+                    }else if(idx2 != nil){
+                        Projekt_Artikel = [
+                            "pid": self.pid,
+                            "aid": arr[0],
+                            "unit": arr[idx2!],
+                            "count": arr[2]
+                        ]
+                    }
+                    Alamofire.request(self.URL_POST_PROJEKT_Artikel, method: .post, parameters: Projekt_Artikel).responseJSON{
+                        response in
+                        self.popup(title_: "Projekt", message_: "Die Artikel wurden dem Projekt erfolgreich hinzugefügt!")
+                    }
+                }
+            }else{
+                let PID_Parameter: Parameters = ["pid": self.pid]
+                Alamofire.request(self.URL_POST_PROJEKT_Artikel, method: .post, parameters: PID_Parameter).responseJSON{
+                    response in
+                    self.popup(title_: "Projekt", message_: "Die Artikel wurden dem Projekt erfolgreich hinzugefügt!")
+                }
+            }
+            self.popup(title_: "Projekt", message_: "Projekt erfolgreich aktualisiert!")
+        }
+    }
+    
+    
+    func setPID(_id: Int, _project: [String]) {
+        pid = _id
+        project = _project
+    }
+    
     
 }

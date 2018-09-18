@@ -21,7 +21,6 @@ class ASEditVC: FormViewController, ASIDDelegate, ArticleDelegate{
     var delegateArticle:ArticleDelegate?
     var delegate: ASIDDelegate?
     
-    let URL_GET_KUNDEN = "http://aos.ssit.at/php/v1/kunden.php"
     let URL_GET_TTYP = "http://aos.ssit.at/php/v1/ttyp.php"
     let URL_GET_TART = "http://aos.ssit.at/php/v1/tart.php"
     let URL_GET_ARTIKEL = "http://aos.ssit.at/php/v1/artikel.php"
@@ -52,7 +51,7 @@ class ASEditVC: FormViewController, ASIDDelegate, ArticleDelegate{
                 let k = self._as[0].split(separator: ";")
                 skundearr.append(SearchItemModel.init(0, String(k[1])))
                 row.value = skundearr[0]
-                row.reload()
+                row.baseCell.isUserInteractionEnabled = false
             }
             
             
