@@ -11,17 +11,27 @@ import MGSwipeTableCell
 import UIKit
 import Alamofire
 
-class OffeneProjectsVC: UITableViewController, PIDDelegate{
-    
+class OffeneProjectsVC: UITableViewController, PIDDelegate, PTKIDDelegate{
+
     let URL_GET_OProjects = "http://aos.ssit.at/php/v1/offeneProjects.php"
     var URL_GET_Projects = "http://aos.ssit.at/php/v1/getProject.php?pid="
     var URL_GET_ProjectsArticle = "http://aos.ssit.at/php/v1/getOpenProjectsArticle.php?pid="
+    var URL_GET_KID = "http://aos.ssit.at/php/v1/getProjektKunden.php?pid="
     
     var oProjects = [String]()
     
     var pid = -1
+    var kid = -1
+    var type = "Projekt"
     var project = [String]()
     var article = [String]()
+    
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        loadOffeneProjects()
+        self.tableView.reloadData()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,7 +40,7 @@ class OffeneProjectsVC: UITableViewController, PIDDelegate{
         self.tableView.dataSource = self
         self.tableView.register(MGSwipeTableCell.self, forCellReuseIdentifier: "MGProject")
         self.title = "Offene Projekte"
-        loadOffeneProjects()
+        //loadOffeneProjects()
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -40,23 +50,45 @@ class OffeneProjectsVC: UITableViewController, PIDDelegate{
             cell = MGSwipeTableCell(style: UITableViewCellStyle.default, reuseIdentifier: "MGProject")
         }
         
+        
+        
         if(self.oProjects.count > 0 && indexPath.row < self.oProjects.count){
             var arr = self.oProjects[indexPath.row].split(separator: ";")
             cell.textLabel?.text = String(arr[0]) + ". " + String(arr[1]) + " "  + String(arr[2])
         }
         
-        let rightButton = MGSwipeButton(title: "Details anzeigen und Bearbeiten", backgroundColor: UIColor.orange, callback: { (sender: MGSwipeTableCell!) in
+        let rightButton = MGSwipeButton(title: "Details", backgroundColor: UIColor.orange, callback: { (sender: MGSwipeTableCell!) in
             var arr = self.oProjects[indexPath.row].split(separator: ";")
             
             self.loadProjectDetails(pid: Int(arr[0])!)
-            self.tableView.reloadData()
             return true
         })
         
-        rightButton.setPadding(30)
-        cell.rightExpansion.buttonIndex = 0
-        cell.rightButtons = [rightButton]
+        let rightButton2 = MGSwipeButton(title: "+Arbeitsschein", backgroundColor: UIColor.cyan, callback: { (sender: MGSwipeTableCell!) in
+            var arr = self.oProjects[indexPath.row].split(separator: ";")
+            self.addAS(_pid: Int(arr[0])!)
+            return true
+        })
         
+        cell.rightExpansion.buttonIndex = 0
+        cell.rightButtons = [rightButton, rightButton2]
+        
+        let leftButton = MGSwipeButton(title: "Offene AS", backgroundColor: UIColor.orange, callback: { (sender: MGSwipeTableCell!) in
+            var arr = self.oProjects[indexPath.row].split(separator: ";")
+            
+            self.showOffeneAS(pid: Int(arr[0])!)
+            return true
+        })
+        
+        let leftButton2 = MGSwipeButton(title: "AS Übersicht", backgroundColor: UIColor.cyan, callback: { (sender: MGSwipeTableCell!) in
+            var arr = self.oProjects[indexPath.row].split(separator: ";")
+            
+            self.showClosedAS(pid: Int(arr[0])!)
+            return true
+        })
+        
+        cell.leftExpansion.buttonIndex = 1
+        cell.leftButtons = [leftButton, leftButton2]
         return cell
     }
     
@@ -73,27 +105,82 @@ class OffeneProjectsVC: UITableViewController, PIDDelegate{
         project = _project
     }
     
+    func setPTKID(_ptid: Int, _kid: Int, _typ: String) {
+        kid = _kid
+        pid = _ptid
+        type = _typ
+    }
+    
+    func addAS(_pid: Int){
+        URL_GET_KID += String(_pid)
+        var tmp = ""
+        Alamofire.request(URL_GET_KID, method: .get).responseJSON{
+            response in
+            if let result = response.result.value{
+                let jsonData = result as! NSDictionary
+                if(!(jsonData.value(forKey: "error") as! Bool)){
+                    let kunde = jsonData.value(forKey: "customer") as! NSArray
+                    let kid = kunde.value(forKey: "kid") as! NSArray
+                    tmp = kid[0] as! String
+                    self.addArbeitsschein(pid: _pid, kid: Int(tmp)!)
+                }
+            }
+        }
+    }
+    
     func loadOffeneProjects(){
+        oProjects = [String]()
         Alamofire.request(URL_GET_OProjects, method: .get).responseJSON{
             response in
             if let result = response.result.value{
                 let jsonData = result as! NSDictionary
                 
                 if(!(jsonData.value(forKey: "error") as! Bool)){
-                    let op = jsonData.value(forKey: "offeneProjekte") as! NSArray
-                    let pid = op.value(forKey: "pid") as! NSArray
-                    let label = op.value(forKey: "label") as! NSArray
-                    let company = op.value(forKey: "companyname") as! NSArray
-                    for i in 0..<op.count{
-                        var a = pid[i] as! String + ";"
-                        a += label[i] as! String + ";"
-                        a += company[i] as! String + ";"
-                        self.oProjects.append(a)
+                    if let op = jsonData.value(forKey: "offeneProjekte") as? NSArray{
+                        let pid = op.value(forKey: "pid") as! NSArray
+                        let label = op.value(forKey: "label") as! NSArray
+                        let company = op.value(forKey: "companyname") as! NSArray
+                        for i in 0..<op.count{
+                            var a = pid[i] as! String + ";"
+                            a += label[i] as! String + ";"
+                            a += company[i] as! String + ";"
+                            self.oProjects.append(a)
+                        }
                     }
                     self.tableView.reloadData()
                 }
             }
         }
+    }
+    
+    func showOffeneAS(pid: Int){
+        self.setPTKID(_ptid: pid, _kid: -1, _typ: "Projekt")
+        let OASVC = self.storyboard?.instantiateViewController(withIdentifier: "OffeneTicketProjektAS") as! OffeneTicketProjektAS
+        OASVC.ptid = pid
+        OASVC.kid = -1
+        OASVC.typ = "Projekt"
+        OASVC.delegate = self
+        self.navigationController?.pushViewController(OASVC, animated: true)
+    }
+    
+    func showClosedAS(pid: Int){
+        self.setPTKID(_ptid: pid, _kid: -1, _typ: "Projekt")
+        let CASVC = self.storyboard?.instantiateViewController(withIdentifier: "ClosedTicketProjektASVC") as! ClosedTicketProjektASVC
+        CASVC.ptid = pid
+        CASVC.kid = -1
+        CASVC.type = "Projekt"
+        CASVC.delegate = self
+        self.navigationController?.pushViewController(CASVC, animated: true)
+    }
+    
+    func addArbeitsschein(pid: Int, kid: Int){
+        self.setPTKID(_ptid: pid, _kid: kid, _typ: "Projekt")
+        let AsVC = self.storyboard?.instantiateViewController(withIdentifier: "ProjektTicketAS") as! AddAS_P_T_VC
+        AsVC.ptid = pid
+        AsVC.kid = self.kid
+        AsVC.typ = "Projekt"
+        AsVC.delegate = self
+        self.navigationController?.pushViewController(AsVC, animated: true)
     }
     
     func loadProjectDetails(pid: Int){

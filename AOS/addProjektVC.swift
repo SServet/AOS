@@ -252,7 +252,6 @@ class addProjektVC: FormViewController, ArticleDelegate {
     }
 
     func getDate(_tag: String)->String{
-        //print(_tag)
         let a = _tag.components(separatedBy: "(")
         if a.contains("nil") == false{
             let b = a[1].components(separatedBy: " ")
@@ -277,7 +276,6 @@ class addProjektVC: FormViewController, ArticleDelegate {
             vol = vol as! Double
         }
         
-        //print(cdate + "\n" + finisehdOn + "\n" + settledOn)
         let defaultval = UserDefaults.standard
         if(checkKunde(kid: kid) && checkBezeichung(bez: label)){
             if let mid = defaultval.string(forKey: "userid"){

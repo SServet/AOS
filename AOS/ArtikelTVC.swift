@@ -60,6 +60,7 @@ class ArtikelTVC: UITableViewController {
         let rightButton = MGSwipeButton(title: "Löschen", backgroundColor: UIColor.red, callback: { (sender: MGSwipeTableCell!) in
             self.deleteArticle(idx: indexPath.item)
             self.tableView.deleteRows(at: [indexPath], with: .automatic)
+            self.tableView.reloadData()
             return true
         })
         

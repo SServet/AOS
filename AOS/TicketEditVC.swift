@@ -34,7 +34,6 @@ class TicketEditVC: FormViewController, TIDDelegate, ArticleDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(ticket[0].split(separator: ";"))
         form +++ Section("Ticket bearbeiten")
             
             <<< SwitchRow("Ticket abschliessen"){row in
@@ -371,7 +370,6 @@ class TicketEditVC: FormViewController, TIDDelegate, ArticleDelegate {
             if(self.article.count > 0){
                 for(index, element) in self.article.enumerated(){
                     let arr = element.components(separatedBy: ";")
-                    print(arr)
                     let idx = arr.index(of: "Stk.")
                     let idx2 = arr.index(of: "Std.")
                     if(idx != nil){

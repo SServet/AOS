@@ -10,13 +10,16 @@ import UIKit
 import MGSwipeTableCell
 import Alamofire
 
-class ClosedProjectVC: UITableViewController{
+class ClosedProjectVC: UITableViewController, PTKIDDelegate{
     
     let URL_GET_CProjects = "http://aos.ssit.at/php/v1/closedProjects.php"
     
     var cP = [String]()
     var article = [String]()
     var asid = -1
+    var pid = -1
+    var kid = -1
+    var type = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,6 +48,16 @@ class ClosedProjectVC: UITableViewController{
             cell.detailTextLabel?.text = String(arr[2])
         }
         
+        let leftButton = MGSwipeButton(title: "AS Übersicht", backgroundColor: UIColor.cyan, callback: { (sender: MGSwipeTableCell!) in
+            var arr = self.cP[indexPath.row].split(separator: ";")
+            
+            self.showClosedAS(pid: Int(arr[0])!)
+            return true
+        })
+        
+        cell.leftExpansion.buttonIndex = 1
+        cell.leftButtons = [leftButton]
+        
         return cell;
     }
     
@@ -58,6 +71,12 @@ class ClosedProjectVC: UITableViewController{
         return 1
     }
     
+    func setPTKID(_ptid: Int, _kid: Int, _typ: String) {
+        kid = _kid
+        pid = _ptid
+        type = _typ
+    }
+    
     func loadClosedProjects(){
         Alamofire.request(URL_GET_CProjects, method: .get).responseJSON{
             response in
@@ -65,16 +84,17 @@ class ClosedProjectVC: UITableViewController{
                 let jsonData = result as! NSDictionary
                 if(!(jsonData.value(forKey: "error") as! Bool)){
                     
-                    let cp = jsonData.value(forKey: "closedProjects") as! NSArray
-                    let pid = cp.value(forKey: "pid") as! NSArray
-                    let descr = cp.value(forKey: "description") as! NSArray
-                    let company = cp.value(forKey: "companyname") as! NSArray
-                    
-                    for i in 0..<cp.count{
-                        var a = pid[i] as! String + ";"
-                        a += descr[i] as! String + ";"
-                        a += company[i] as! String
-                        self.cP.append(a)
+                    if let cp = jsonData.value(forKey: "closedProjects") as? NSArray {
+                        let pid = cp.value(forKey: "pid") as! NSArray
+                        let descr = cp.value(forKey: "description") as! NSArray
+                        let company = cp.value(forKey: "companyname") as! NSArray
+                        
+                        for i in 0..<cp.count{
+                            var a = pid[i] as! String + ";"
+                            a += descr[i] as! String + ";"
+                            a += company[i] as! String
+                            self.cP.append(a)
+                        }
                     }
                     self.tableView.reloadData()
                 }
@@ -82,6 +102,15 @@ class ClosedProjectVC: UITableViewController{
             
         }
     }
-    
+ 
+    func showClosedAS(pid: Int){
+        self.setPTKID(_ptid: pid, _kid: -1, _typ: "Projekt")
+        let CASVC = self.storyboard?.instantiateViewController(withIdentifier: "ClosedTicketProjektASVC") as! ClosedTicketProjektASVC
+        CASVC.ptid = pid
+        CASVC.kid = -1
+        CASVC.type = "Projekt"
+        CASVC.delegate = self
+        self.navigationController?.pushViewController(CASVC, animated: true)
+    }
 }
 

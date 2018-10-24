@@ -1,25 +1,30 @@
 //
-//  OffeneASVC.swift
+//  ClosedTicketProjektAS.swift
 //  AOS
 //
-//  Created by SSIT on 28.08.18.
+//  Created by SSIT on 24.09.18.
 //  Copyright © 2018 SSIT. All rights reserved.
 //
+
 
 import UIKit
 import MGSwipeTableCell
 import Alamofire
 
-class ClosedASVC: UITableViewController, ASIDDelegate{
+class ClosedTicketProjektASVC: UITableViewController, PTKIDDelegate{
     
-    let URL_GET_CAS = "http://aos.ssit.at/php/v1/closedAS.php"
+    var URL_GET_CAS = "http://aos.ssit.at/php/v1/closedProjektTicketAS.php"
     var URL_GET_AS = "http://aos.ssit.at/php/v1/getAS.php?asid="
     var URL_GET_ASArticle = "http://aos.ssit.at/php/v1/getOffeneASArticle.php?asid="
     
     var _as = [String]()
     var cAS = [String]()
     var article = [String]()
-    var asid = -1
+    var ptid = -1
+    var kid  = -1
+    var type = ""
+    
+    var delegate: PTKIDDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,7 +51,7 @@ class ClosedASVC: UITableViewController, ASIDDelegate{
             var arr = self.cAS[indexPath.row].split(separator: ";")
             cell.textLabel?.text = arr[0] + ". " + arr[2] + " " + arr[1]
         }
-
+        
         return cell;
     }
     
@@ -61,22 +66,28 @@ class ClosedASVC: UITableViewController, ASIDDelegate{
     }
     
     func loadClosedAS(){
+        if(type == "Projekt"){
+            URL_GET_CAS += "?pid=" + String(ptid)
+        }else{
+            URL_GET_CAS += "?tid=" + String(ptid)
+        }
+        
         Alamofire.request(URL_GET_CAS, method: .get).responseJSON{
             response in
             if let result = response.result.value{
                 let jsonData = result as! NSDictionary
                 if(!(jsonData.value(forKey: "error") as! Bool)){
                     
-                    if let cas = jsonData.value(forKey: "closedAS") as? NSArray{
+                    if let cas = jsonData.value(forKey: "closedAS") as? NSArray {
                         let asid = cas.value(forKey: "asid") as! NSArray
                         let descr = cas.value(forKey: "description") as! NSArray
                         let company = cas.value(forKey: "companyname") as! NSArray
                         let datefrom = cas.value(forKey: "dateFrom") as! NSArray
-                        let offeneAS = cas.mutableCopy() as! NSMutableArray
+                        let closedAS = cas.mutableCopy() as! NSMutableArray
                         
                         for i in 0..<cas.count{
                             var a = asid[i] as! String + ";"
-                            a += (descr[i] as! String) + ";"
+                            a += descr[i] as! String + ";"
                             a += company[i] as! String + ";"
                             a += datefrom[i] as! String
                             self.cAS.append(a)
@@ -89,9 +100,9 @@ class ClosedASVC: UITableViewController, ASIDDelegate{
         }
     }
     
-    func setASID(_id: Int, as_: [String]){
-        asid = _id
-        _as = as_
+    func setPTKID(_ptid: Int, _kid: Int, _typ: String) {
+        ptid = _ptid
+        kid = _kid
+        type = _typ
     }
 }
-

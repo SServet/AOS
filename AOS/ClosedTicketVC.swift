@@ -10,13 +10,16 @@ import UIKit
 import MGSwipeTableCell
 import Alamofire
 
-class ClosedTicketVC: UITableViewController{
+class ClosedTicketVC: UITableViewController, PTKIDDelegate{
     
     let URL_GET_CTickets = "http://aos.ssit.at/php/v1/closedTickets.php"
     
     var cT = [String]()
     var article = [String]()
     var asid = -1
+    var tid = -1
+    var kid = -1
+    var type = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,6 +47,15 @@ class ClosedTicketVC: UITableViewController{
             cell.textLabel?.text = String(arr[0]) + ". " + String(arr[1]) + " "  + String(arr[2])
             cell.detailTextLabel?.text = String(arr[2])
         }
+        let leftButton = MGSwipeButton(title: "AS Übersicht", backgroundColor: UIColor.cyan, callback: { (sender: MGSwipeTableCell!) in
+            var arr = self.cT[indexPath.row].split(separator: ";")
+            
+            self.showClosedAS(pid: Int(arr[0])!)
+            return true
+        })
+        
+        cell.leftExpansion.buttonIndex = 1
+        cell.leftButtons = [leftButton]
         
         return cell;
     }
@@ -58,6 +70,22 @@ class ClosedTicketVC: UITableViewController{
         return 1
     }
     
+    func setPTKID(_ptid: Int, _kid: Int, _typ: String) {
+        kid = _kid
+        tid = _ptid
+        type = _typ
+    }
+    
+    func showClosedAS(pid: Int){
+        self.setPTKID(_ptid: pid, _kid: -1, _typ: "Ticket")
+        let CASVC = self.storyboard?.instantiateViewController(withIdentifier: "ClosedTicketProjektASVC") as! ClosedTicketProjektASVC
+        CASVC.ptid = pid
+        CASVC.kid = -1
+        CASVC.type = "Ticket"
+        CASVC.delegate = self
+        self.navigationController?.pushViewController(CASVC, animated: true)
+    }
+    
     func loadClosedTickets(){
         Alamofire.request(URL_GET_CTickets, method: .get).responseJSON{
             response in
@@ -65,16 +93,17 @@ class ClosedTicketVC: UITableViewController{
                 let jsonData = result as! NSDictionary
                 if(!(jsonData.value(forKey: "error") as! Bool)){
                     
-                    let ct = jsonData.value(forKey: "closedTickets") as! NSArray
-                    let tid = ct.value(forKey: "tid") as! NSArray
-                    let descr = ct.value(forKey: "description") as! NSArray
-                    let company = ct.value(forKey: "companyname") as! NSArray
-                    
-                    for i in 0..<ct.count{
-                        var a = tid[i] as! String + ";"
-                        a += descr[i] as! String + ";"
-                        a += company[i] as! String
-                        self.cT.append(a)
+                    if let ct = jsonData.value(forKey: "closedTickets") as? NSArray {
+                        let tid = ct.value(forKey: "tid") as! NSArray
+                        let descr = ct.value(forKey: "description") as! NSArray
+                        let company = ct.value(forKey: "companyname") as! NSArray
+                        
+                        for i in 0..<ct.count{
+                            var a = tid[i] as! String + ";"
+                            a += descr[i] as! String + ";"
+                            a += company[i] as! String
+                            self.cT.append(a)
+                        }
                     }
                     self.tableView.reloadData()
                 }

@@ -1,9 +1,9 @@
 //
-//  addArbeitsscheinVC.swift
+//  addAS_P_T.swift
 //  AOS
 //
-//  Created by Marko Peric on 11.12.17.
-//  Copyright © 2017 SSIT. All rights reserved.
+//  Created by SSIT on 20.09.18.
+//  Copyright © 2018 SSIT. All rights reserved.
 //
 
 import UIKit
@@ -11,43 +11,36 @@ import Eureka
 import Alamofire
 import Foundation
 
-struct SearchItemModel {
-    let id: Int
-    let title: String
+class AddAS_P_T_VC: FormViewController, ArticleDelegate, PTKIDDelegate{
     
-    init(_ id:Int,_ title:String) {
-        self.id = id
-        self.title = title
-    }
-}
-extension SearchItemModel: SearchItem {
-    func matchesSearchQuery(_ query: String) -> Bool {
-        return title.lowercased().contains(query.lowercased())
-    }
-}
-extension SearchItemModel: Equatable {
-    static func == (lhs: SearchItemModel, rhs: SearchItemModel) -> Bool {
-        return lhs.description == rhs.description
-    }
-}
-extension SearchItemModel: CustomStringConvertible {
-    var description: String {
-        return title
-    }
-}
-
-class addArbeitsscheinVC: FormViewController, ArticleDelegate{
-    let URL_GET_KUNDEN = "http://aos.ssit.at/php/v1/kunden.php"
     let URL_GET_ARTIKEL = "http://aos.ssit.at/php/v1/artikel.php"
     let URL_GET_TTYP = "http://aos.ssit.at/php/v1/ttyp.php"
     let URL_GET_TART = "http://aos.ssit.at/php/v1/tart.php"
-    let URL_POST_AS = "http://aos.ssit.at/php/v1/asInsert.php"
-    let URL_POST_AS_CLOSED = "http://aos.ssit.at/php/v1/asInsertClosed.php"
+    let URL_POST_AS = "http://aos.ssit.at/php/v1/asProjektTicketInsert.php"
+    let URL_POST_AS_CLOSED = "http://aos.ssit.at/php/v1/asProjektTicketInsertClosed.php"
     let URL_POST_AS_Artikel = "http://aos.ssit.at/php/v1/artikelArbeitsscheinInsert.php"
-    let URL_POST_Artikel = "http://aos.ssit.at/php/v1/asArticle.php"
+    
+    var delegate: PTKIDDelegate?
     
     var artikel = [String]()
     var asClose = false
+    
+    var kid = -1
+    var ptid = -1
+    var typ = ""
+    
+    func setPTKID(_ptid: Int, _kid: Int, _typ: String) {
+        kid = _kid
+        ptid = _ptid
+        typ = _typ
+    }
+    
+    override func willMove(toParentViewController parent: UIViewController?) {
+        super.willMove(toParentViewController:parent)
+        if parent == nil {
+
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -56,43 +49,12 @@ class addArbeitsscheinVC: FormViewController, ArticleDelegate{
             <<< SwitchRow("AS abschliessen"){row in
                 row.title = "Arbeitsschein abschließen"
                 row.value = false
-            }.onChange{row in
-                if(row.value == true){
-                    self.asClose = true
-                }else{
-                    self.asClose = false
-                }
-            }
-            
-            <<< SearchPushRow<SearchItemModel>("Kunde"){ row in
-                row.title = "Kunde"
-                Alamofire.request(URL_GET_KUNDEN, method: .get).responseJSON{
-                    response in
-                    if let result = response.result.value{
-                        let jsonData = result as! NSDictionary
-                        
-                        if(!(jsonData.value(forKey: "error") as! Bool)){
-                            
-                            let customer = jsonData.value(forKey: "customer") as! NSArray
-                            let companyname = customer.value(forKey: "companyname") as! NSArray
-                            let kid = customer.value(forKey: "kid") as! NSArray
-                            
-                            var sarr = [SearchItemModel]()
-                            for i in 0..<companyname.count{
-                                if companyname[i] is NSString{
-                                    var a = kid[i] as! NSString
-                                    var b:String = a as String
-                                    b += ". " + ((companyname[i] as! NSString) as String)
-                                    sarr.append(SearchItemModel.init(Int((kid[i] as! NSString).intValue), b))
-                                }
-                            }
-                            row.options = sarr
-                            row.selectorTitle = "Wähle Sie einen Kunden aus"
-                        }
+                }.onChange{row in
+                    if(row.value == true){
+                        self.asClose = true
+                    }else{
+                        self.asClose = false
                     }
-                    
-                }
-                
             }
             
             <<< SearchPushRow<SearchItemModel>("Artikel"){row in
@@ -247,7 +209,7 @@ class addArbeitsscheinVC: FormViewController, ArticleDelegate{
             <<< ButtonRow("Senden"){
                 $0.title = "Senden"
                 $0.onCellSelection(buttontapped)
-            }
+        }
     }
     
     // passing data between views
@@ -257,7 +219,6 @@ class addArbeitsscheinVC: FormViewController, ArticleDelegate{
     
     // Daten von der Form lesen,
     func buttontapped(cell: ButtonCellOf<String>, row: ButtonRow){
-        let kid = getID(_tag: "Kunde")
         let ttid = getID(_tag: "Termintyp")
         let tid  = getID(_tag: "Tätigkeit")
         let descr = getString(_tag: "Beschreibung")
@@ -268,37 +229,37 @@ class addArbeitsscheinVC: FormViewController, ArticleDelegate{
         var tfrom = getZeit(_tag: "Zeit von")
         var dTo = getDate(_tag: String(describing: form.rowBy(tag: "Datum bis")?.baseValue)) as! String
         var tTo = getZeit(_tag: "Zeit bis")
-
         
-        var arr = dfrom.components(separatedBy: ".")
-        var month = arr[1]
+        
+        var arr = dfrom.components(separatedBy: "/")
+        var month = arr[0]
         if(Int(month)! < 10){
             if(Int(arr[0])! < 10){
-                dfrom = "20" + arr[2] + "-0" + month + "-0" + arr[0]
+                dfrom = "20" + arr[2] + "-0" + month + "-0" + arr[1]
             }else{
-                dfrom = "20" + arr[2] + "-0" + month + "-" + arr[0]
+                dfrom = "20" + arr[2] + "-0" + month + "-" + arr[1]
             }
         }else{
             if(Int(arr[0])! < 10){
-                dfrom = "20" + arr[2] + "-" + month + "-0" + arr[0]
+                dfrom = "20" + arr[2] + "-" + month + "-0" + arr[1]
             }else{
-                dfrom = "20" + arr[2] + "-" + month + "-" + arr[0]
+                dfrom = "20" + arr[2] + "-" + month + "-" + arr[1]
             }
         }
         
-        arr = dTo.components(separatedBy: ".")
-        month = arr[1]
+        arr = dTo.components(separatedBy: "/")
+        month = arr[0]
         if(Int(month)! < 10){
             if(Int(arr[0])! < 10){
-                dTo = "20" + arr[2] + "-0" + month + "-0" + arr[0]
+                dTo = "20" + arr[2] + "-0" + month + "-0" + arr[1]
             }else{
-                dTo = "20" + arr[2] + "-0" + month + "-" + arr[0]
+                dTo = "20" + arr[2] + "-0" + month + "-" + arr[1]
             }
         }else{
             if(Int(arr[0])! < 10){
-                dTo = "20" + arr[2] + "-" + month + "-0" + arr[0]
+                dTo = "20" + arr[2] + "-" + month + "-0" + arr[1]
             }else{
-                dTo = "20" + arr[2] + "-" + month + "-" + arr[0]
+                dTo = "20" + arr[2] + "-" + month + "-" + arr[1]
             }
         }
         
@@ -498,17 +459,33 @@ class addArbeitsscheinVC: FormViewController, ArticleDelegate{
     
     // Arbeitsschein anlegen
     func addAS(mid: Int, kid: Int, ttid: Int, tid: Int, descr: String, dfrom: String, kgrund: String, kzeit: Int, tFrom: String, dTo: String, tTo: String){
-        let AS: Parameters=[
-            "kid": kid,
-            "mid": mid,
-            "descr": descr,
-            "ttid": ttid,
-            "tid": tid,
-            "dfrom": dfrom,
-            "kzeit": kzeit,
-            "kgrund": kgrund,
-            "tfrom": tFrom
-        ]
+        var AS: Parameters=[:]
+        
+        if(typ == "Projekt"){
+            AS = ["kid": kid,
+                  "mid": mid,
+                  "descr": descr,
+                  "ttid": ttid,
+                  "tid": tid,
+                  "dfrom": dfrom,
+                  "kzeit": kzeit,
+                  "kgrund": kgrund,
+                  "tfrom": tFrom,
+                  "pid": ptid
+            ]
+        }else{
+            AS = ["kid": kid,
+                  "mid": mid,
+                  "descr": descr,
+                  "ttid": ttid,
+                  "tid": tid,
+                  "dfrom": dfrom,
+                  "kzeit": kzeit,
+                  "kgrund": kgrund,
+                  "tfrom": tFrom,
+                  "tid": ptid
+            ]
+        }
         
         if(!asClose){
             Alamofire.request(URL_POST_AS, method: .post, parameters: AS).responseJSON{
@@ -541,19 +518,39 @@ class addArbeitsscheinVC: FormViewController, ArticleDelegate{
                 self.popup(title_: "Arbeitsschein", message_: "Arbeitsschein erfolgreich hinzugefügt!")
             }
         }else{
-            let ASClose: Parameters=[
-                "kid": kid,
-                "mid": mid,
-                "descr": descr,
-                "ttid": ttid,
-                "tid": tid,
-                "dfrom": dfrom,
-                "kzeit": kzeit,
-                "kgrund": kgrund,
-                "tfrom": tFrom,
-                "dTo": dTo,
-                "tTo": tTo
-            ]
+            var ASClose: Parameters=[:]
+            
+            if(typ == "Projekt"){
+                ASClose = [
+                    "kid": kid,
+                    "mid": mid,
+                    "descr": descr,
+                    "ttid": ttid,
+                    "tid": tid,
+                    "dfrom": dfrom,
+                    "kzeit": kzeit,
+                    "kgrund": kgrund,
+                    "tfrom": tFrom,
+                    "dTo": dTo,
+                    "tTo": tTo,
+                    "pid": ptid
+                ]
+            }else{
+                ASClose = [
+                    "kid": kid,
+                    "mid": mid,
+                    "descr": descr,
+                    "ttid": ttid,
+                    "tid": tid,
+                    "dfrom": dfrom,
+                    "kzeit": kzeit,
+                    "kgrund": kgrund,
+                    "tfrom": tFrom,
+                    "dTo": dTo,
+                    "tTo": tTo,
+                    "tid": ptid
+                ]
+            }
             
             Alamofire.request(URL_POST_AS_CLOSED, method: .post, parameters: ASClose).responseJSON{
                 response in

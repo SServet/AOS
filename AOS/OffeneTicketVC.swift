@@ -11,17 +11,20 @@ import MGSwipeTableCell
 import UIKit
 import Alamofire
 
-class OffeneTicketVC: UITableViewController, TIDDelegate {
+class OffeneTicketVC: UITableViewController, TIDDelegate, PTKIDDelegate {
     
     let URL_GET_OTickets = "http://aos.ssit.at/php/v1/offeneTickets.php"
     var URL_GET_Ticket = "http://aos.ssit.at/php/v1/getTicket.php?tid="
     var URL_GET_TicketArticles = "http://aos.ssit.at/php/v1/getOpenTicketsArticle.php?tid="
+    var URL_GET_KID = "http://aos.ssit.at/php/v1/getTicketKunden.php?tid="
     
     var oTickets = [String]()
     var ticket = [String]()
     var article = [String]()
     
     var tid = -1
+    var kid = -1
+    var type = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,12 +46,13 @@ class OffeneTicketVC: UITableViewController, TIDDelegate {
         if cell == nil {
             cell = MGSwipeTableCell(style: UITableViewCellStyle.default, reuseIdentifier: "MGTicket")
         }
-        //print(self.oTickets)
+        
         if(self.oTickets.count > 0 && indexPath.row < self.oTickets.count){
             var arr = self.oTickets[indexPath.row].split(separator: ";")
             cell.textLabel?.text = String(arr[0]) + ". " + String(arr[1]) + " "  + String(arr[2])
         }
-        let rightButton = MGSwipeButton(title: "Details anzeigen und Bearbeiten", backgroundColor: UIColor.orange, callback: { (sender: MGSwipeTableCell!) in
+        
+        let rightButton = MGSwipeButton(title: "Details", backgroundColor: UIColor.orange, callback: { (sender: MGSwipeTableCell!) in
             var arr = self.oTickets[indexPath.row].split(separator: ";")
             
             self.loadTicketDetails(tid: Int(arr[0])!)
@@ -56,9 +60,36 @@ class OffeneTicketVC: UITableViewController, TIDDelegate {
             return true
         })
         
-        rightButton.setPadding(30)
+        let rightButton2 = MGSwipeButton(title: "+Arbeitsschein", backgroundColor: UIColor.blue, callback: { (sender: MGSwipeTableCell!) in
+            var arr = self.oTickets[indexPath.row].split(separator: ";")
+            
+            self.addAS(_tid: Int(arr[0])!)
+            self.tableView.reloadData()
+            return true
+        })
+        
         cell.rightExpansion.buttonIndex = 0
-        cell.rightButtons = [rightButton]
+        cell.rightButtons = [rightButton, rightButton2]
+        
+        
+        let leftButton = MGSwipeButton(title: "Offene AS", backgroundColor: UIColor.orange, callback: { (sender: MGSwipeTableCell!) in
+            var arr = self.oTickets[indexPath.row].split(separator: ";")
+            
+            self.showOffeneAS(tid: Int(arr[0])!)
+            self.tableView.reloadData()
+            return true
+        })
+        
+        let leftButton2 = MGSwipeButton(title: "AS Übersicht", backgroundColor: UIColor.cyan, callback: { (sender: MGSwipeTableCell!) in
+            var arr = self.oTickets[indexPath.row].split(separator: ";")
+            
+            self.showClosedAS(tid: Int(arr[0])!)
+            self.tableView.reloadData()
+            return true
+        })
+        
+        cell.leftExpansion.buttonIndex = 1
+        cell.leftButtons = [leftButton, leftButton2]
         
         return cell
     }
@@ -67,23 +98,76 @@ class OffeneTicketVC: UITableViewController, TIDDelegate {
         return 1
     }
     
+    func setPTKID(_ptid: Int, _kid: Int, _typ: String) {
+        tid = _ptid
+        kid = _kid
+        type = _typ
+    }
+    
+    func addArbeitsschein(tid: Int, kid: Int){
+        self.setPTKID(_ptid: tid, _kid: kid, _typ: "Projekt")
+        let AsVC = self.storyboard?.instantiateViewController(withIdentifier: "ProjektTicketAS") as! AddAS_P_T_VC
+        AsVC.ptid = tid
+        AsVC.kid = self.kid
+        AsVC.typ = "Ticket"
+        AsVC.delegate = self
+        self.navigationController?.pushViewController(AsVC, animated: true)
+    }
+    
+    func addAS(_tid: Int){
+        URL_GET_KID += String(_tid)
+        var tmp = ""
+        Alamofire.request(URL_GET_KID, method: .get).responseJSON{
+            response in
+            if let result = response.result.value{
+                let jsonData = result as! NSDictionary
+                if(!(jsonData.value(forKey: "error") as! Bool)){
+                    let kunde = jsonData.value(forKey: "customer") as! NSArray
+                    let kid = kunde.value(forKey: "kid") as! NSArray
+                    tmp = kid[0] as! String
+                    self.addArbeitsschein(tid: _tid, kid: Int(tmp)!)
+                }
+            }
+        }
+    }
+    
+    func showOffeneAS(tid: Int){
+        self.setPTKID(_ptid: tid, _kid: -1, _typ: "Ticket")
+        let OASVC = self.storyboard?.instantiateViewController(withIdentifier: "OffeneTicketProjektAS") as! OffeneTicketProjektAS
+        OASVC.ptid = tid
+        OASVC.kid = -1
+        OASVC.typ = "Ticket"
+        OASVC.delegate = self
+        self.navigationController?.pushViewController(OASVC, animated: true)
+    }
+    
+    func showClosedAS(tid: Int){
+        self.setPTKID(_ptid: tid, _kid: -1, _typ: "Ticket")
+        let CASVC = self.storyboard?.instantiateViewController(withIdentifier: "ClosedTicketProjektASVC") as! ClosedTicketProjektASVC
+        CASVC.ptid = tid
+        CASVC.kid = -1
+        CASVC.type = "Ticket"
+        CASVC.delegate = self
+        self.navigationController?.pushViewController(CASVC, animated: true)
+    }
+    
     func loadOffenTickets(){
         Alamofire.request(URL_GET_OTickets, method: .get).responseJSON{
             response in
-            //print(response)
             if let result = response.result.value{
                 let jsonData = result as! NSDictionary
                 
                 if(!(jsonData.value(forKey: "error") as! Bool)){
-                    let ot = jsonData.value(forKey: "offeneTickets") as! NSArray
-                    let tid = ot.value(forKey: "tid") as! NSArray
-                    let label = ot.value(forKey: "label") as! NSArray
-                    let company = ot.value(forKey: "companyname") as! NSArray
-                    for i in 0..<ot.count{
-                        var a = tid[i] as! String + ";"
-                        a += label[i] as! String + ";"
-                        a += company[i] as! String + ";"
-                        self.oTickets.append(a)
+                    if let ot = jsonData.value(forKey: "offeneTickets") as? NSArray {
+                        let tid = ot.value(forKey: "tid") as! NSArray
+                        let label = ot.value(forKey: "label") as! NSArray
+                        let company = ot.value(forKey: "companyname") as! NSArray
+                        for i in 0..<ot.count{
+                            var a = tid[i] as! String + ";"
+                            a += label[i] as! String + ";"
+                            a += company[i] as! String + ";"
+                            self.oTickets.append(a)
+                        }
                     }
                     self.tableView.reloadData()
                 }

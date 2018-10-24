@@ -34,6 +34,11 @@ class ViewController: UIViewController, UITextFieldDelegate {
         self.view.endEditing(true)
     }
     
+    func getDocumentsDirectory() -> URL {
+        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        let documentsDirectory = paths[0]
+        return documentsDirectory
+    }
     
     @IBAction func loginButton(_ sender: Any) {
         let LoginRequest: Parameters=[
@@ -45,7 +50,6 @@ class ViewController: UIViewController, UITextFieldDelegate {
             if let result = response.result.value{
                 
                 let jsonData = result as! NSDictionary
-                //print(jsonData)
                 if(!(jsonData.value(forKey: "error") as! Bool)){
                     
                     //getting the user from response
@@ -63,6 +67,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
                     let menuViewController = self.storyboard?.instantiateViewController(withIdentifier: "MenuViewController") as! MenuViewController
                     self.navigationController?.pushViewController(menuViewController, animated: true)
                     self.dismiss(animated: false, completion: nil)
+                    print(self.getDocumentsDirectory())
                 }else{
                     let alert = UIAlertController(title: "Warnung!", message: "Falsche E-Mail bzw. Passwort!", preferredStyle: UIAlertControllerStyle.alert)
                     alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))

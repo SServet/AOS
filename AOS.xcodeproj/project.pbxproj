@@ -14,7 +14,6 @@
 		F90CD10A2112E9E600E5C6C1 /* CollapsibleTableSectionViewController.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F90CD1082112E9E000E5C6C1 /* CollapsibleTableSectionViewController.framework */; };
 		F90CD10B2112E9E600E5C6C1 /* CollapsibleTableSectionViewController.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F90CD1082112E9E000E5C6C1 /* CollapsibleTableSectionViewController.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		F90CD1142113040B00E5C6C1 /* ASIDDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F90CD1132113040B00E5C6C1 /* ASIDDelegate.swift */; };
-		F90CD1162113092D00E5C6C1 /* ASEditVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F90CD1152113092D00E5C6C1 /* ASEditVC.swift */; };
 		F9136AC1201F1C0C00F37485 /* addProjektVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9136AC0201F1C0C00F37485 /* addProjektVC.swift */; };
 		F9136AC3201F1E8300F37485 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9136AC2201F1E8300F37485 /* Alamofire.framework */; };
 		F9136AC5201F1EE600F37485 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9136AC4201F1EE600F37485 /* MenuViewController.swift */; };
@@ -37,7 +36,13 @@
 		F95A126521357CC300A3BEE3 /* OffeneASVCEdit.swift in Sources */ = {isa = PBXBuildFile; fileRef = F95A126421357CC200A3BEE3 /* OffeneASVCEdit.swift */; };
 		F95A126921357D6A00A3BEE3 /* ClosedASVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F95A126821357D6A00A3BEE3 /* ClosedASVC.swift */; };
 		F95A126D2136E46700A3BEE3 /* ClosedProjectVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F95A126C2136E46700A3BEE3 /* ClosedProjectVC.swift */; };
+		F96FA8FA216E488E00FA0DB9 /* invoice.html in Resources */ = {isa = PBXBuildFile; fileRef = F96FA8F9216E488E00FA0DB9 /* invoice.html */; };
+		F96FA8FC216F85B200FA0DB9 /* CustomPrintPageRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F96FA8FB216F85B200FA0DB9 /* CustomPrintPageRenderer.swift */; };
+		F96FA90021708DDE00FA0DB9 /* ASEditVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F96FA8FF21708DDD00FA0DB9 /* ASEditVC.swift */; };
+		F96FA9022175F04D00FA0DB9 /* PreviewASController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F96FA9012175F04C00FA0DB9 /* PreviewASController.swift */; };
+		F96FA9042177440700FA0DB9 /* as_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = F96FA9032177440700FA0DB9 /* as_logo.png */; };
 		F9807B3B1F97DCEC001BD351 /* rz_logo.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F9807B3A1F97DCEB001BD351 /* rz_logo.jpg */; };
+		F98AA329216CAE8400DFBE34 /* CreateASPDF.swift in Sources */ = {isa = PBXBuildFile; fileRef = F98AA328216CAE8400DFBE34 /* CreateASPDF.swift */; };
 		F9ADCCC6213D73F900BBEE21 /* PIDDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9ADCCC5213D73F900BBEE21 /* PIDDelegate.swift */; };
 		F9ADCCC8213D7BB300BBEE21 /* ProjectEditVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9ADCCC7213D7BB300BBEE21 /* ProjectEditVC.swift */; };
 		F9ADCCCA2149596200BBEE21 /* TIDDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9ADCCC92149596200BBEE21 /* TIDDelegate.swift */; };
@@ -45,6 +50,10 @@
 		F9ADCCCF21496D4800BBEE21 /* Eureka.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F9ADCCCD21496D4700BBEE21 /* Eureka.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		F9ADCCD1214A4AC600BBEE21 /* offeneTicketVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9ADCCD0214A4AC600BBEE21 /* offeneTicketVC.swift */; };
 		F9ADCCD3214A4C6D00BBEE21 /* TicketEditVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9ADCCD2214A4C6D00BBEE21 /* TicketEditVC.swift */; };
+		F9ADCCD52153872200BBEE21 /* addAS_P_T_VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9ADCCD42153872200BBEE21 /* addAS_P_T_VC.swift */; };
+		F9ADCCD72153942000BBEE21 /* PTKIDDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9ADCCD62153942000BBEE21 /* PTKIDDelegate.swift */; };
+		F9ADCCD921553B9D00BBEE21 /* offeneTicketProjektAS.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9ADCCD821553B9D00BBEE21 /* offeneTicketProjektAS.swift */; };
+		F9ADCCDB2158E10600BBEE21 /* ClosedTicketProjektAS.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9ADCCDA2158E10600BBEE21 /* ClosedTicketProjektAS.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -71,7 +80,6 @@
 		F90CD1062112E9CE00E5C6C1 /* CollapsibleTableSectionViewController.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = CollapsibleTableSectionViewController.framework.dSYM; path = Carthage/Build/iOS/CollapsibleTableSectionViewController.framework.dSYM; sourceTree = "<group>"; };
 		F90CD1082112E9E000E5C6C1 /* CollapsibleTableSectionViewController.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CollapsibleTableSectionViewController.framework; path = Carthage/Build/iOS/CollapsibleTableSectionViewController.framework; sourceTree = "<group>"; };
 		F90CD1132113040B00E5C6C1 /* ASIDDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ASIDDelegate.swift; sourceTree = "<group>"; };
-		F90CD1152113092D00E5C6C1 /* ASEditVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ASEditVC.swift; sourceTree = "<group>"; };
 		F9136AC0201F1C0C00F37485 /* addProjektVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = addProjektVC.swift; sourceTree = "<group>"; };
 		F9136AC2201F1E8300F37485 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
 		F9136AC4201F1EE600F37485 /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
@@ -93,13 +101,23 @@
 		F95A126421357CC200A3BEE3 /* OffeneASVCEdit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OffeneASVCEdit.swift; sourceTree = "<group>"; };
 		F95A126821357D6A00A3BEE3 /* ClosedASVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClosedASVC.swift; sourceTree = "<group>"; };
 		F95A126C2136E46700A3BEE3 /* ClosedProjectVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClosedProjectVC.swift; sourceTree = "<group>"; };
+		F96FA8F9216E488E00FA0DB9 /* invoice.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = invoice.html; sourceTree = "<group>"; };
+		F96FA8FB216F85B200FA0DB9 /* CustomPrintPageRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPrintPageRenderer.swift; sourceTree = "<group>"; };
+		F96FA8FF21708DDD00FA0DB9 /* ASEditVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ASEditVC.swift; sourceTree = "<group>"; };
+		F96FA9012175F04C00FA0DB9 /* PreviewASController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreviewASController.swift; sourceTree = "<group>"; };
+		F96FA9032177440700FA0DB9 /* as_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = as_logo.png; sourceTree = "<group>"; };
 		F9807B3A1F97DCEB001BD351 /* rz_logo.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = rz_logo.jpg; sourceTree = "<group>"; };
+		F98AA328216CAE8400DFBE34 /* CreateASPDF.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateASPDF.swift; sourceTree = "<group>"; };
 		F9ADCCC5213D73F900BBEE21 /* PIDDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PIDDelegate.swift; sourceTree = "<group>"; };
 		F9ADCCC7213D7BB300BBEE21 /* ProjectEditVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectEditVC.swift; sourceTree = "<group>"; };
 		F9ADCCC92149596200BBEE21 /* TIDDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TIDDelegate.swift; sourceTree = "<group>"; };
 		F9ADCCCD21496D4700BBEE21 /* Eureka.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Eureka.framework; path = Carthage/Build/iOS/Eureka.framework; sourceTree = "<group>"; };
 		F9ADCCD0214A4AC600BBEE21 /* offeneTicketVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = offeneTicketVC.swift; sourceTree = "<group>"; };
 		F9ADCCD2214A4C6D00BBEE21 /* TicketEditVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketEditVC.swift; sourceTree = "<group>"; };
+		F9ADCCD42153872200BBEE21 /* addAS_P_T_VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = addAS_P_T_VC.swift; sourceTree = "<group>"; };
+		F9ADCCD62153942000BBEE21 /* PTKIDDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PTKIDDelegate.swift; sourceTree = "<group>"; };
+		F9ADCCD821553B9D00BBEE21 /* offeneTicketProjektAS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = offeneTicketProjektAS.swift; sourceTree = "<group>"; };
+		F9ADCCDA2158E10600BBEE21 /* ClosedTicketProjektAS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClosedTicketProjektAS.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -136,6 +154,7 @@
 		F92C556D1F94C06E00476CFB = {
 			isa = PBXGroup;
 			children = (
+				F96FA8F9216E488E00FA0DB9 /* invoice.html */,
 				F9ADCCCD21496D4700BBEE21 /* Eureka.framework */,
 				F92C55781F94C06E00476CFB /* AOS */,
 				F92C55771F94C06E00476CFB /* Products */,
@@ -154,6 +173,9 @@
 		F92C55781F94C06E00476CFB /* AOS */ = {
 			isa = PBXGroup;
 			children = (
+				F96FA9032177440700FA0DB9 /* as_logo.png */,
+				F96FA9012175F04C00FA0DB9 /* PreviewASController.swift */,
+				F96FA8FF21708DDD00FA0DB9 /* ASEditVC.swift */,
 				F93D9F4E20569D5E006B8DB9 /* ArtikelTVC.swift */,
 				F9136AC0201F1C0C00F37485 /* addProjektVC.swift */,
 				F92C55791F94C06E00476CFB /* AppDelegate.swift */,
@@ -172,7 +194,6 @@
 				F93D9F50205C550D006B8DB9 /* ArticleDelegate.swift */,
 				F95A126421357CC200A3BEE3 /* OffeneASVCEdit.swift */,
 				F90CD1132113040B00E5C6C1 /* ASIDDelegate.swift */,
-				F90CD1152113092D00E5C6C1 /* ASEditVC.swift */,
 				F95A1262211D6D9A00A3BEE3 /* offeneProjectsVC.swift */,
 				F95A126821357D6A00A3BEE3 /* ClosedASVC.swift */,
 				F95A126C2136E46700A3BEE3 /* ClosedProjectVC.swift */,
@@ -182,6 +203,12 @@
 				F9ADCCC92149596200BBEE21 /* TIDDelegate.swift */,
 				F9ADCCD0214A4AC600BBEE21 /* offeneTicketVC.swift */,
 				F9ADCCD2214A4C6D00BBEE21 /* TicketEditVC.swift */,
+				F9ADCCD42153872200BBEE21 /* addAS_P_T_VC.swift */,
+				F9ADCCD62153942000BBEE21 /* PTKIDDelegate.swift */,
+				F9ADCCD821553B9D00BBEE21 /* offeneTicketProjektAS.swift */,
+				F9ADCCDA2158E10600BBEE21 /* ClosedTicketProjektAS.swift */,
+				F98AA328216CAE8400DFBE34 /* CreateASPDF.swift */,
+				F96FA8FB216F85B200FA0DB9 /* CustomPrintPageRenderer.swift */,
 			);
 			path = AOS;
 			sourceTree = "<group>";
@@ -247,11 +274,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F96FA8FA216E488E00FA0DB9 /* invoice.html in Resources */,
 				F9807B3B1F97DCEC001BD351 /* rz_logo.jpg in Resources */,
 				F92C55841F94C06E00476CFB /* LaunchScreen.storyboard in Resources */,
 				F92C55811F94C06E00476CFB /* Assets.xcassets in Resources */,
 				F949A1241F953DF300641596 /* rz_logo.jpg in Resources */,
 				F92C557F1F94C06E00476CFB /* Main.storyboard in Resources */,
+				F96FA9042177440700FA0DB9 /* as_logo.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -262,13 +291,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F90CD1162113092D00E5C6C1 /* ASEditVC.swift in Sources */,
+				F9ADCCD921553B9D00BBEE21 /* offeneTicketProjektAS.swift in Sources */,
+				F96FA8FC216F85B200FA0DB9 /* CustomPrintPageRenderer.swift in Sources */,
+				F9ADCCD72153942000BBEE21 /* PTKIDDelegate.swift in Sources */,
 				F95A126921357D6A00A3BEE3 /* ClosedASVC.swift in Sources */,
+				F98AA329216CAE8400DFBE34 /* CreateASPDF.swift in Sources */,
+				F9ADCCDB2158E10600BBEE21 /* ClosedTicketProjektAS.swift in Sources */,
 				72659CF5200372280054F96D /* SearchPushRow.swift in Sources */,
 				F95A126521357CC300A3BEE3 /* OffeneASVCEdit.swift in Sources */,
 				F9311E4E2137DC61002EEB0D /* ClosedTicketVC.swift in Sources */,
 				F9ADCCD1214A4AC600BBEE21 /* offeneTicketVC.swift in Sources */,
 				F90CD1142113040B00E5C6C1 /* ASIDDelegate.swift in Sources */,
+				F96FA90021708DDE00FA0DB9 /* ASEditVC.swift in Sources */,
+				F9ADCCD52153872200BBEE21 /* addAS_P_T_VC.swift in Sources */,
 				F9ADCCC6213D73F900BBEE21 /* PIDDelegate.swift in Sources */,
 				F9136AC1201F1C0C00F37485 /* addProjektVC.swift in Sources */,
 				F95A1263211D6D9A00A3BEE3 /* offeneProjectsVC.swift in Sources */,
@@ -278,6 +313,7 @@
 				F95A126D2136E46700A3BEE3 /* ClosedProjectVC.swift in Sources */,
 				F92C557C1F94C06E00476CFB /* ViewController.swift in Sources */,
 				F9ADCCD3214A4C6D00BBEE21 /* TicketEditVC.swift in Sources */,
+				F96FA9022175F04D00FA0DB9 /* PreviewASController.swift in Sources */,
 				F93D9F4F20569D5E006B8DB9 /* ArtikelTVC.swift in Sources */,
 				F92C557A1F94C06E00476CFB /* AppDelegate.swift in Sources */,
 				F9ADCCCA2149596200BBEE21 /* TIDDelegate.swift in Sources */,

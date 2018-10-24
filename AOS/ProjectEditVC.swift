@@ -380,12 +380,9 @@ class ProjectEditVC: FormViewController, PIDDelegate, ArticleDelegate {
             response in
             var Projekt_Artikel: Parameters = [:]
             if(self.article.count > 0){
-                print(self.article)
                 for(index, element) in self.article.enumerated(){
                     let arr = element.components(separatedBy: ";")
-                    print(arr)
                     let idx = arr.index(of: "Stk.")
-                    print(idx)
                     let idx2 = arr.index(of: "Std.")
                     if(idx != nil){
                         Projekt_Artikel = [
